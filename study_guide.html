@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medicina Legal i Forense · Guia d'estudi</title>
+<style>
+  :root{
+    --ink:#1a1a2e;
+    --ink-soft:#3a3a52;
+    --paper:#fbfaf6;
+    --accent:#c0392b;
+    --accent-2:#8e44ad;
+    --teal:#0d7377;
+    --gold:#d4a017;
+    --green:#27ae60;
+    --red:#c0392b;
+    --gray:#e8e6df;
+    --line:#d8d4c4;
+    --highlight:#fff3a3;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:'Georgia','Times New Roman',serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.65;
+  }
+  /* ---- HERO ---- */
+  .hero{
+    background:linear-gradient(135deg,#1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    color:#fff;
+    padding:80px 24px 70px;
+    text-align:center;
+    border-bottom:6px solid var(--gold);
+  }
+  .hero h1{
+    margin:0 0 16px;
+    font-size:54px;
+    font-family:'Georgia',serif;
+    letter-spacing:-1px;
+    line-height:1.05;
+  }
+  .hero h1 span{color:var(--gold)}
+  .hero p{
+    font-style:italic;
+    font-size:19px;
+    max-width:640px;
+    margin:0 auto;
+    opacity:.85;
+  }
+  .hero .badge{
+    display:inline-block;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.3);
+    padding:6px 16px;
+    border-radius:30px;
+    font-family:sans-serif;
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:24px;
+  }
+  /* ---- TOC ---- */
+  .toc{
+    max-width:980px;
+    margin:-40px auto 40px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:28px 36px;
+    box-shadow:0 10px 40px rgba(0,0,0,.08);
+  }
+  .toc h2{
+    font-family:sans-serif;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size:12px;
+    color:var(--accent);
+    margin:0 0 16px;
+  }
+  .toc ol{
+    columns:2;
+    column-gap:40px;
+    padding-left:18px;
+    margin:0;
+    font-size:15px;
+  }
+  .toc li{margin:6px 0; break-inside:avoid}
+  .toc a{
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px dotted var(--line);
+  }
+  .toc a:hover{color:var(--accent); border-bottom-color:var(--accent)}
+  /* ---- SECTIONS ---- */
+  section.chapter{
+    max-width:880px;
+    margin:0 auto;
+    padding:60px 28px 30px;
+  }
+  .chapter-num{
+    font-family:'Courier New',monospace;
+    font-size:13px;
+    letter-spacing:4px;
+    color:var(--accent);
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .chapter h2{
+    font-size:42px;
+    margin:0 0 10px;
+    line-height:1.05;
+    color:var(--ink);
+    font-family:'Georgia',serif;
+  }
+  .lead{
+    font-size:19px;
+    color:var(--ink-soft);
+    border-left:4px solid var(--gold);
+    padding:6px 0 6px 18px;
+    margin:24px 0 30px;
+    font-style:italic;
+  }
+  h3{
+    font-size:24px;
+    margin:42px 0 12px;
+    color:var(--teal);
+    font-family:'Georgia',serif;
+  }
+  h4{
+    font-size:18px;
+    margin:28px 0 8px;
+    color:var(--accent-2);
+    font-family:sans-serif;
+    letter-spacing:.5px;
+  }
+  p{margin:12px 0}
+  ul,ol{padding-left:24px}
+  li{margin:6px 0}
+  code, .term{
+    font-family:'Courier New',monospace;
+    background:#f0eee5;
+    padding:1px 6px;
+    border-radius:3px;
+    font-size:.92em;
+  }
+  strong{color:var(--accent)}
+  em{color:var(--ink-soft)}
+  /* ---- OVERVIEW BOX ---- */
+  .overview{
+    background:#fef9e7;
+    border:1px solid #d4a017;
+    border-left:5px solid var(--gold);
+    padding:20px 26px;
+    margin:24px 0 34px;
+    border-radius:0 6px 6px 0;
+  }
+  .overview h4{
+    color:#7a5b00;
+    margin-top:0;
+    text-transform:uppercase;
+    font-size:12px;
+    letter-spacing:3px;
+  }
+  .overview ul{margin:8px 0 0; padding-left:22px}
+  /* ---- CALLOUTS ---- */
+  .callout{
+    margin:18px 0;
+    padding:16px 22px;
+    border-radius:6px;
+    border-left:5px solid;
+  }
+  .callout-tip{background:#e8f6f3; border-color:var(--teal); color:#0a4b4d}
+  .callout-warn{background:#fdeaea; border-color:var(--red); color:#7a1a1a}
+  .callout-key{background:#f4eafa; border-color:var(--accent-2); color:#5b2475}
+  .callout strong{color:inherit}
+  .callout .label{
+    display:block;
+    font-family:sans-serif;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:11px;
+    font-weight:bold;
+    margin-bottom:6px;
+    opacity:.7;
+  }
+  /* ---- TABLE ---- */
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:20px 0;
+    font-size:15px;
+    background:#fff;
+    border:1px solid var(--line);
+  }
+  th,td{
+    padding:10px 14px;
+    border:1px solid var(--line);
+    text-align:left;
+    vertical-align:top;
+  }
+  th{
+    background:var(--ink);
+    color:#fff;
+    font-family:sans-serif;
+    font-size:13px;
+    letter-spacing:.5px;
+  }
+  tbody tr:nth-child(even){background:#f5f3ec}
+  td.center{text-align:center}
+  /* ---- TIMELINE ---- */
+  .timeline{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+    margin:24px 0;
+    border-left:3px solid var(--teal);
+    padding-left:24px;
+  }
+  .tl-event{
+    position:relative;
+    padding:10px 16px;
+    margin:10px 0;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:5px;
+  }
+  .tl-event::before{
+    content:"";
+    position:absolute;
+    left:-32px;
+    top:18px;
+    width:14px;
+    height:14px;
+    background:var(--teal);
+    border:3px solid var(--paper);
+    border-radius:50%;
+    box-shadow:0 0 0 1px var(--teal);
+  }
+  .tl-time{
+    display:inline-block;
+    background:var(--teal);
+    color:#fff;
+    font-family:sans-serif;
+    font-size:12px;
+    padding:2px 10px;
+    border-radius:12px;
+    margin-bottom:4px;
+    letter-spacing:.5px;
+  }
+  /* ---- FLOW DIAGRAM ---- */
+  .flow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+    margin:24px 0;
+    justify-content:center;
+  }
+  .flow-node{
+    background:#fff;
+    border:2px solid var(--ink);
+    border-radius:8px;
+    padding:14px 18px;
+    min-width:140px;
+    text-align:center;
+    font-family:sans-serif;
+    font-size:13px;
+    line-height:1.3;
+    box-shadow:3px 3px 0 var(--gold);
+  }
+  .flow-node.start{background:var(--ink); color:#fff; border-color:var(--ink)}
+  .flow-node.bad{border-color:var(--red); box-shadow:3px 3px 0 var(--red)}
+  .flow-node.good{border-color:var(--green); box-shadow:3px 3px 0 var(--green)}
+  .flow-arrow{
+    font-family:sans-serif;
+    font-size:24px;
+    color:var(--teal);
+    font-weight:bold;
+  }
+  /* ---- COMPARE CARDS ---- */
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin:24px 0;
+  }
+  .compare-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:18px 22px;
+  }
+  .compare-card h5{
+    margin:0 0 10px;
+    padding-bottom:6px;
+    border-bottom:2px solid;
+    font-family:sans-serif;
+    font-size:15px;
+    letter-spacing:.5px;
+  }
+  .compare-card.left h5{color:var(--accent); border-color:var(--accent)}
+  .compare-card.right h5{color:var(--teal); border-color:var(--teal)}
+  @media(max-width:640px){
+    .compare{grid-template-columns:1fr}
+    .toc ol{columns:1}
+    .hero h1{font-size:38px}
+  }
+  /* ---- CHIP / TAG ---- */
+  .chip{
+    display:inline-block;
+    background:var(--ink);
+    color:#fff;
+    padding:3px 10px;
+    font-family:sans-serif;
+    font-size:11px;
+    border-radius:20px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-right:6px;
+  }
+  .chip.gold{background:var(--gold); color:var(--ink)}
+  .chip.red{background:var(--red)}
+  .chip.teal{background:var(--teal)}
+  .chip.purple{background:var(--accent-2)}
+  /* ---- DIVIDER ---- */
+  .divider{
+    text-align:center;
+    margin:60px 0;
+    color:var(--gold);
+    font-size:24px;
+    letter-spacing:8px;
+  }
+  /* ---- TIP BANK ---- */
+  .tip-bank{
+    background:linear-gradient(135deg,#1a1a2e 0%, #0f3460 100%);
+    color:#fff;
+    padding:60px 28px;
+    margin-top:60px;
+  }
+  .tip-bank-inner{max-width:880px; margin:0 auto}
+  .tip-bank h2{
+    color:var(--gold);
+    font-size:42px;
+    margin:0 0 24px;
+  }
+  .tip-bank h3{color:#fff}
+  .tip-bank .tip{
+    background:rgba(255,255,255,.06);
+    border-left:4px solid var(--gold);
+    padding:18px 22px;
+    margin:18px 0;
+    border-radius:0 6px 6px 0;
+  }
+  .tip-bank .tip-num{
+    display:inline-block;
+    background:var(--gold);
+    color:var(--ink);
+    font-family:sans-serif;
+    font-weight:bold;
+    width:28px;
+    height:28px;
+    line-height:28px;
+    border-radius:50%;
+    text-align:center;
+    margin-right:10px;
+  }
+  .footer{
+    text-align:center;
+    padding:40px 20px;
+    color:var(--ink-soft);
+    font-size:13px;
+    font-style:italic;
+  }
+  /* progress bar */
+  #progress-bar{
+    position:fixed;
+    top:0; left:0; height:4px;
+    background:var(--gold);
+    z-index:9999;
+    width:0%;
+    transition:width .1s;
+  }
+  /* ---- KEY ICON in heading ---- */
+  .key-icon{
+    display:inline-block;
+    width:24px;
+    height:24px;
+    background:var(--gold);
+    color:var(--ink);
+    border-radius:50%;
+    text-align:center;
+    line-height:24px;
+    font-family:sans-serif;
+    font-weight:bold;
+    font-size:14px;
+    margin-right:6px;
+  }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<header class="hero">
+  <span class="badge">ESADE · C8 · Examen Final</span>
+  <h1>Medicina Legal<br><span>i Forense</span></h1>
+  <p>Una travessia lineal pels 15 temes del temari — amb mapes, esquemes i tots els signes que cauen a l'examen.</p>
+</header>
+
+<nav class="toc">
+  <h2>Ruta d'estudi</h2>
+  <ol>
+    <li><a href="#cap1">Introducció a la MLiF</a></li>
+    <li><a href="#cap2">Tanatologia & cronotanatodiagnòstic</a></li>
+    <li><a href="#cap3">Criminalística & taques de sang</a></li>
+    <li><a href="#cap4">Lesions (contusions & armes)</a></li>
+    <li><a href="#cap5">Asfíxies mecàniques</a></li>
+    <li><a href="#cap6">Agents físics (calor, fred, electricitat)</a></li>
+    <li><a href="#cap7">Víctimes múltiples & catàstrofes</a></li>
+    <li><a href="#cap8">Responsabilitat professional</a></li>
+    <li><a href="#cap9">Psiquiatria legal i forense</a></li>
+    <li><a href="#cap10">Violència domèstica</a></li>
+    <li><a href="#cap11">Autonomia del pacient</a></li>
+    <li><a href="#cap12">Valoració del dany corporal</a></li>
+    <li><a href="#cap13">Documents medicolegals</a></li>
+    <li><a href="#cap14">Medicina del treball</a></li>
+    <li><a href="#cap15">Ginecologia & toxicologia</a></li>
+    <li><a href="#tips"><strong>★ Tips per a l'MCQ</strong></a></li>
+  </ol>
+</nav>
+
+<!-- ============================================================== -->
+<!-- CAPÍTOL 1 -->
+<!-- ============================================================== -->
+<section class="chapter" id="cap1">
+  <div class="chapter-num">Capítol 01</div>
+  <h2>El terreny on es troben llei i medicina</h2>
+  <p class="lead">La medicina legal i forense uneix dret i medicina: el seu objectiu és donar al jutge la informació científica que necessita per decidir.</p>
+
+  <div class="overview">
+    <h4>★ Visió ràpida</h4>
+    <ul>
+      <li><strong>Pere Mata i Fontanet</strong> (1843–44): pare de la disciplina a Espanya.</li>
+      <li>Tres branques: <em>clínica medicoforense</em> (vius), <em>patologia forense</em> (morts) i <em>laboratori</em>.</li>
+      <li>El metge forense és <strong>funcionari públic</strong>, treballa en un <strong>IML</strong> i depèn del <strong>jutge</strong> — <em>mai</em> de la policia.</li>
+    </ul>
+  </div>
+
+  <h3>Línia temporal mínima</h3>
+  <div class="timeline">
+    <div class="tl-event"><span class="tl-time">1843</span> Pere Mata fa entrar la MLiF a la universitat.</div>
+    <div class="tl-event"><span class="tl-time">1844</span> Cada jutjat ha de tenir un metge assessor.</div>
+    <div class="tl-event"><span class="tl-time">1855</span> Es crea el <strong>Cos de Metges Forenses</strong>.</div>
+    <div class="tl-event"><span class="tl-time">1955</span> Apareix la via MIR... i es cancel·la el mateix any.</div>
+    <div class="tl-event"><span class="tl-time">2020</span> Torna l'especialitat.</div>
+  </div>
+
+  <h3>El metge forense en una frase</h3>
+  <div class="callout callout-key">
+    <span class="label">Definició a recordar</span>
+    És <strong>graduat o llicenciat en Medicina</strong>, <strong>funcionari públic</strong>, que treballa a l'<strong>IML</strong> o a l'<strong>Institut Nacional de Toxicologia</strong>, <strong>sota les ordres del jutge</strong> (mai de la policia).
+  </div>
+
+  <h3>Etiologia mèdic-legal de la mort</h3>
+  <table>
+    <thead><tr><th>Tipus</th><th>Color codi</th><th>Origen</th><th>Què fa el metge?</th></tr></thead>
+    <tbody>
+      <tr><td>Natural</td><td class="center">⚪ Blanc</td><td>Endogen (infecció, IAM…)</td><td>Certificat mèdic de defunció</td></tr>
+      <tr><td>Violenta</td><td class="center">⚫ Negre</td><td>Exogen (accident, suïcidi, homicidi, eutanàsia)</td><td><strong>Autòpsia</strong> — avisar jutjat</td></tr>
+      <tr><td>Sospitosa de criminalitat</td><td class="center">🟡 Groc</td><td>Indeterminada: sense assistència, restes òssies, custòdia, quiròfan, súbita…</td><td><strong>Autòpsia</strong> — avisar jutjat</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-warn">
+    <span class="label">Trampa habitual a l'examen</span>
+    Una <strong>reacció adversa a drogues</strong> presumiblement accidental NO és muerte natural — és <em>violenta</em>. <strong>No</strong> certifiquis defunció: avisa el jutjat i el forense farà el aixecament.
+  </div>
+
+  <h3>Mort sobtada — Hirsch (1995)</h3>
+  <p>Definició Concheiro-Suárez: <em>morta imprevista, aparentment natural, de malaltia desconeguda, ràpida — sempre cal sospitar causa violenta.</em></p>
+
+  <table>
+    <thead><tr><th>Grau</th><th>Què trobem</th><th>%</th></tr></thead>
+    <tbody>
+      <tr><td><strong>I</strong></td><td>Lesió estructural letal demostrada</td><td class="center">5%</td></tr>
+      <tr><td><strong>II</strong></td><td>Malaltia potencialment letal i avançada, però sense lesió demostrada</td><td class="center"><strong>90%</strong> ← +freqüent</td></tr>
+      <tr><td><strong>III</strong></td><td>Malaltia potencialment letal però no prou avançada</td><td class="center" rowspan="3">5%</td></tr>
+      <tr><td><strong>IV</strong></td><td>Antecedents funcionals sense base estructural (ex: epilèpsia)</td></tr>
+      <tr><td><strong>V</strong></td><td>Indeterminada (autòpsia blanca)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-tip">
+    <span class="label">Pregunta clàssica</span>
+    «El més freqüent en mort sobtada és trobar una lesió estructural letal» → <strong>FALS</strong>. El més freqüent és el grau II (90%): malaltia avançada però sense lesió demostrada.
+  </div>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ============================================================== -->
+<!-- CAPÍTOL 2 -->
+<!-- ============================================================== -->
+<section class="chapter" id="cap2">
+  <div class="chapter-num">Capítol 02</div>
+  <h2>Tanatologia: l'hora exacta de la mort</h2>
+  <p class="lead">Quan mor algú, el cos comença a parlar. Cada fenomen cadavèric té el seu rellotge propi — encreuar-los és el cronotanatodiagnòstic.</p>
+
+  <div class="overview">
+    <h4>★ Visió ràpida</h4>
+    <ul>
+      <li><strong>3 grans fenòmens</strong>: fenòmens cadavèrics → autòlisi → putrefacció.</li>
+      <li><strong>Tríada de Bichat</strong>: cessament definitiu i irreversible de respiració + cor + neurològic.</li>
+      <li>L'estafa mental: <em>autòlisi</em> = enzims propis SENSE bacteris; <em>putrefacció</em> = bacteris (interns o externs).</li>
+    </ul>
+  </div>
+
+  <h3>Els fenòmens cadavèrics i els seus rellotges</h3>
+
+  <h4>Lividors → arriba la gravetat</h4>
+  <div class="timeline">
+    <div class="tl-event"><span class="tl-time">20–45 min</span> Aparició de taques <strong>aïllades</strong> a les zones declives.</div>
+    <div class="tl-event"><span class="tl-time">1h 45–2h</span> <strong>Confluència</strong> de taques.</div>
+    <div class="tl-event"><span class="tl-time">10–12h</span> Ocupen tot el pla inferior. <strong>Fixació</strong> (digitopressió: blanqueja però torna).</div>
+    <div class="tl-event"><span class="tl-time">12–24h</span> Encara possible <strong>transposició</strong> → dobles lividors (algú ha mogut el cos!).</div>
+    <div class="tl-event"><span class="tl-time">&gt;24h</span> Ja no hi ha transposició.</div>
+  </div>
+
+  <h4>Rigidesa → els músculs es bloquegen</h4>
+  <div class="timeline">
+    <div class="tl-event"><span class="tl-time">30 min – 2h</span> Comença a <strong>cor i diafragma</strong> (fibra llisa). Pot sonar com a estertors.</div>
+    <div class="tl-event"><span class="tl-time">3–6h</span> Musculatura esquelètica.</div>
+    <div class="tl-event"><span class="tl-time">24–30h</span> <strong>Període d'estat</strong> — rigidesa màxima.</div>
+    <div class="tl-event"><span class="tl-time">&gt;36h</span> Resolució.</div>
+  </div>
+
+  <div class="callout callout-warn">
+    <span class="label">Trampa freqüent</span>
+    Afirmar que la rigidesa màxima és a les <strong>36–48h</strong> és <em>fals</em> — el període d'estat és <strong>24–30h</strong>. (Aquesta exacta pregunta ha caigut.)
+  </div>
+
+  <h4>Refredament — Bouchut</h4>
+  <ul>
+    <li>Primeres hores: descens de <strong>0,8–1 °C/h</strong>.</li>
+    <li>12h següents: <strong>0,3–0,5 °C/h</strong>.</li>
+    <li>S'iguala a l'ambient en <strong>~24h</strong>.</li>
+    <li>Zones acrals: 2h. Òrgans interns: 24h.</li>
+  </ul>
+  <p class="callout callout-tip"><span class="label">Recorda</span>El nom correcte hauria de ser <strong>equilibri tèrmic</strong>, no «refredament» — el cadàver no «es refreda», sinó que s'iguala amb el medi.</p>
+
+  <h4>Espasme cadavèric ≠ rigidesa</h4>
+  <div class="compare">
+    <div class="compare-card left">
+      <h5>Rigidesa</h5>
+      <ul>
+        <li>Constant (sempre passa)</li>
+        <li>Hi ha hagut relaxació prèvia</li>
+        <li>Tota la musculatura</li>
+      </ul>
+    </div>
+    <div class="compare-card right">
+      <h5>Espasme</h5>
+      <ul>
+        <li><strong>Inconstant</strong> — no sempre</li>
+        <li>SENSE relaxació prèvia</li>
+        <li>Reprodueix la postura del moment exacte de la mort</li>
+        <li>Lligat a morts emotives. <strong>No simulable</strong>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Deshidratació · pista ocular</h4>
+  <p><strong>Taca esclerótica de Sommer-Larcher</strong> — màcula marronosa: la esclera assecada deixa veure la coroides. <span class="chip gold">examen</span></p>
+
+  <h3>Autòlisi vs Putrefacció</h3>
+  <div class="compare">
+    <div class="compare-card left">
+      <h5>Autòlisi</h5>
+      <ul>
+        <li>Procés <strong>anaeròbic</strong> dins la cèl·lula</li>
+        <li><strong>Enzims propis</strong> — sense bacteris</li>
+        <li>Conservats: <em>santuaris tanatoquímics</em> (LCR, humor vitri, endolimfa, líquid pericardic/sinovial)</li>
+      </ul>
+    </div>
+    <div class="compare-card right">
+      <h5>Putrefacció</h5>
+      <ul>
+        <li>Fermentació <strong>pútrida</strong></li>
+        <li><strong>Bacteris</strong> (interns o externs)</li>
+        <li>Primer signe: <strong>taca verda</strong> a la fossa ilíaca dreta (24h)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Les 4 fases de la putrefacció</h3>
+  <table>
+    <thead><tr><th>Fase</th><th>Temps</th><th>Senyals clau</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Cromàtica</strong></td><td>~24h</td><td>Taca verda a FID → s'estén i s'enfosqueix</td></tr>
+      <tr><td><strong>Enfisematosa</strong></td><td>Dies–setmanes</td><td>Cara negra, exorbitisme, llengua projectada, <em>marbling</em> (xarxa venosa visible), distensió tòraco-abdominal</td></tr>
+      <tr><td><strong>Col·licuativa</strong></td><td>8–10 mesos</td><td>Despreniment d'epidermis, ampolles de líquid sanieux (putrílag), caiguda d'ungles i pèls. <strong>Ja NO es veu el marbling.</strong></td></tr>
+      <tr><td><strong>Reducció esquelètica</strong></td><td>2–5 anys</td><td>Desaparició de totes les parts toves</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-warn">
+    <span class="label">Punt de confusió</span>
+    El <strong>marbling</strong> (xarxa venosa superficial) pertany a la fase <strong>enfisematosa</strong>, NO a la col·licuativa. Si surt com a opció de col·licuativa, és la falsa.
+  </div>
+
+  <h3>Conservacions cadavèriques</h3>
+  <table>
+    <thead><tr><th></th><th>Naturals</th><th>Artificials</th></tr></thead>
+    <tbody>
+      <tr><td>Tipus</td><td>Momificació · Saponificació (adipocera) · Congelació</td><td>Refrigeració · Congelació · Corificació · Embalsamament</td></tr>
+      <tr><td>Condicions</td><td>Momif: aire sec i calor · Sapon: humitat i SENSE aire</td><td>Decisió humana</td></tr>
+    </tbody>
+  </table>
+  <p>Un mateix cadàver pot tenir <strong>dos fenòmens de conservació diferents</strong> en zones distintes.</p>
+
+  <h3>Calcular l'hora de la mort — què combinar</h3>
+  <ol>
+    <li><strong>Fenòmens cadavèrics</strong> (lividors + rigidesa + temperatura).</li>
+    <li>Detencions vitals: contingut gàstric, intestinal, replenir vesical, pèl/barba.</li>
+    <li><strong>Santuaris tanatoquímics</strong>: fòsfor i magnesi del humor vitri.</li>
+    <li><strong>Entomologia</strong> cadavèrica — els insectes hi van en ordre fix.</li>
+    <li>Signes paramèdics: tiquets, calendaris (de fora cap a dins).</li>
+  </ol>
+
+  <div class="callout callout-tip">
+    <span class="label">Pregunta tipus</span>
+    Cas amb «<em>lividors fixades, rigidesa en instauració, fred al tacte fins al pit, encara sense taca verda</em>» → ~<strong>12 hores</strong>. (Lividors ja fixades = ≥12h; sense taca verda = &lt;24h; rigidesa encara entrant.)
+  </div>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ============================================================== -->
+<!-- CAPÍTOL 3 -->
+<!-- ============================================================== -->
+<section class="chapter" id="cap3">
+  <div class="chapter-num">Capítol 03</div>
+  <h2>Criminalística: l'escena parla</h2>
+  <p class="lead">El forense no toca res, ho fotografia tot, i recull les pistes que la víctima ha deixat escrites en sang.</p>
+
+  <div class="overview">
+    <h4>★ Visió ràpida</h4>
+    <ul>
+      <li>Al <strong>aixecament del cadàver</strong> hi va sí o sí el <strong>jutge</strong> (l'ordena). El forense no pot tocar res abans.</li>
+      <li>Excepció: si està en via pública, retirada per la <em>policia judicial</em>.</li>
+      <li>Bertillon → antropometria. SAID → 17 punts coincidents per identificar una empremta.</li>
+    </ul>
+  </div>
+
+  <h3>Indicis biològics i no biològics</h3>
+  <ul>
+    <li><strong>Biològics:</strong> sang, saliva, semen, orina, pèls (ADN).</li>
+    <li><strong>No biològics:</strong> el més important és la <strong>pintura</strong>.</li>
+  </ul>
+
+  <h3>Taques de sang — classificació de Simonin</h3>
+  <table>
+    <thead><tr><th>Tipus</th><th>Mecanisme</th><th>Forma</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Projecció</strong></td><td>Esquitxada (per ex. pisar un toll → sòcol)</td><td>Rodonenca si perpendicular; signe d'exclamació si oblícua (s'allarga en direcció)</td></tr>
+      <tr><td><strong>Escorriment</strong></td><td>Sang que baixa</td><td>Forma de degotim</td></tr>
+      <tr><td><strong>Contacte</strong></td><td>Toc d'un objecte amb sang</td><td>Empremta de l'objecte</td></tr>
+      <tr><td><strong>Impregnació</strong></td><td>Absorció en teixit (roba, llençol)</td><td>Difusa, sense vores netes</td></tr>
+      <tr><td><strong>Neteja / Limpiadura</strong></td><td>Algú ha intentat esborrar</td><td>Restes parcials</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-key">
+    <span class="label">Concepte clau</span>
+    <strong>Espais muts</strong> = espai lliure de taca on hi havia un objecte o persona <em>en el moment de la projecció</em>, i que ha estat <em>desplaçat</em> posteriorment. Pista de manipulació de l'escena.
+  </div>
+
+  <h3>Signes de vitalitat d'una lesió — Legrand du Saulle</h3>
+  <ul>
+    <li>Llavis engruixits i infiltrats de sang, separats per retracció dèrmica.</li>
+    <li>Hemorràgia abundant + infiltració.</li>
+    <li>Sang <strong>coagulada</strong> al fons de la ferida.</li>
+  </ul>
+  <p>Pràctica del <em>rentat amb aigua</em>: si la sang queda fixada (vital) o se'n va (postmortal).</p>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ============================================================== -->
+<!-- CAPÍTOL 4 -->
+<!-- ============================================================== -->
+<section class="chapter" id="cap4">
+  <div class="chapter-num">Capítol 04</div>
+  <h2>Lesions: contusions, armes blanques i armes de foc</h2>
+  <p class="lead">Cada arma deixa una signatura. Aprendre a llegir-les és el cor de la patologia forense.</p>
+
+  <h3>Contusions — l'arma és roma</h3>
+
+  <h4>Sense lesió de pell</h4>
+  <ul>
+    <li><strong>Equimosi</strong>: sang al teixit subcutani. Pot ser <em>figurada</em> (reprodueix l'objecte). El color canvia → permet datar (excepcions: subconjuntival i subungueal).</li>
+  </ul>
+
+  <h4>Amb lesió de pell</h4>
+  <ul>
+    <li><strong>Erosió</strong>: només epidermis.</li>
+    <li><strong>Excoriació</strong>: arriba a dermis.</li>
+    <li><strong>Herida contusa</strong>: la més medicolegal. Característiques irrenunciables ↓</li>
+  </ul>
+
+  <div class="callout callout-key">
+    <span class="label">Patognomònic d'herida contusa</span>
+    <strong>Ponts d'unió</strong> entre les vores: petits vasos, fibres o filets nerviosos que travessen la ferida. Si els veus, NO és arma blanca — és un objecte contundent.
+  </div>
+
+  <h3>Caiguda vs Precipitació</h3>
+  <div class="compare">
+    <div class="compare-card left">
+      <h5>Caiguda</h5>
+      <ul><li>Mateix nivell pla sustentació ↔ pla impacte</li><li>Lesions localitzades</li></ul>
+    </div>
+    <div class="compare-card right">
+      <h5>Precipitació</h5>
+      <ul>
+        <li>Pla sustentació <strong>per sobre</strong> del pla impacte</li>
+        <li>Cap (estallat «<strong>saco de nueces</strong>»)</li>
+        <li><strong>Pell intacta</strong> + <strong>destrosses internes</strong> (òrgans massissos)</li>
+        <li>Quàdruple fractura de <strong>Piga Pascual</strong> (extremitats sup. + inf. per cop i contra-cop)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <span class="label">Trampa CLÀSSICA</span>
+    «L'absència de lesions importants a la pell descarta la precipitació» → <strong>FALS</strong>. En precipitació la pell sol estar <em>intacta</em> i les lesions són internes.
+  </div>
+
+  <h3>Armes blanques</h3>
+  <table>
+    <thead><tr><th>Tipus</th><th>Mecanisme</th><th>Característiques</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Punzant</strong> (agulla, espina)</td><td>Punta — disocia</td><td>Orifici puntiforme/ull. Orifici sortida (si n'hi ha) <em>menor</em> i irregular. Lleis de Filhos i Langer.</td></tr>
+      <tr><td><strong>Incís</strong> (ganivet, vidre, bisturí)</td><td>Tall — pel fil</td><td>Vores <strong>regulars i netes</strong>. <strong>Cues</strong> a entrada i sortida. ❌ ponts d'unió.</td></tr>
+      <tr><td><strong>Incís-punzant</strong> (ganivet de cuina, tisores)</td><td>Punta + fil</td><td>Punyalades. Orifici punzant + cues d'incís.</td></tr>
+      <tr><td><strong>Incís-contundent</strong> (destral, matxet)</td><td>Massa + fil</td><td>❌ ponts. ❌ cues. ✅ mutilacions + dany ossi. Vores amb contusió.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-tip">
+    <span class="label">Identificació ràpida</span>
+    Una ferida amb vidre trencat (incisa) tindrà <strong>cues</strong> a les zones superficials. Cap pont d'unió ni vores irregulars (això seria contusa).
+  </div>
+
+  <h3>Suïcida vs Homicida amb arma blanca</h3>
+  <div class="compare">
+    <div class="compare-card left">
+      <h5>Suïcida</h5>
+      <ul>
+        <li>SENSE violència a l'escena</li>
+        <li>Talls de prova (tantejos)</li>
+        <li>Diagonal (segons mà dominant)</li>
+        <li><strong>Pèrdua de profunditat</strong> per pèrdua de força</li>
+        <li>Lesió alta a coll</li>
+      </ul>
+    </div>
+    <div class="compare-card right">
+      <h5>Homicida</h5>
+      <ul>
+        <li>Lluita a l'escena</li>
+        <li>Lesions de <strong>defensa</strong> (mans)</li>
+        <li>Horitzontal</li>
+        <li><strong>Profunditat constant</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Arma de foc — el llibre de Cluedo</h3>
+
+  <h4>Què surt del canó (en aquest ordre):</h4>
+  <div class="flow">
+    <div class="flow-node start">Pólvora + casquillo</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-node">Projectil</div>
+    <div class="flow-node">Gasos</div>
+    <div class="flow-node">Flama</div>
+    <div class="flow-node">Grans de pólvora</div>
+    <div class="flow-node">Negre de fum</div>
+  </div>
+
+  <h4>Orifici d'entrada — vora a vora</h4>
+  <ul>
+    <li><strong>Cintilla de contusió</strong> = blau de l'impacte de la bala.</li>
+    <li><strong>Collarí d'eixugament</strong> = brutícia que deixa el projectil.</li>
+    <li>Les dues junts = <strong>anell de Fish</strong>.</li>
+    <li>Per fora de l'anell: <strong>tatuatge / taraceo</strong> (grans de pólvora encastats).</li>
+  </ul>
+
+  <h4>Eponímics que cauen</h4>
+  <table>
+    <thead><tr><th>Signe</th><th>Què és</th><th>On</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Benassi</strong></td><td>Ennegriment d'os subjacent per negre de fum</td><td>Orifici d'<strong>entrada</strong></td></tr>
+      <tr><td><strong>Puppe-Werkgartner</strong></td><td>Empremta del canó sobre la pell</td><td>Entrada a contacte</td></tr>
+      <tr><td><strong>Hoffmann («boca de mina»)</strong></td><td>Vores esquinçades estrellades</td><td>Entrada amb plà ossi sota</td></tr>
+      <tr><td><strong>Cono truncat</strong></td><td>Permet identificar entrada vs sortida en plans ossis</td><td>Diferenciador</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Distàncies</h4>
+  <table>
+    <thead><tr><th>Distància</th><th>Què hi és</th></tr></thead>
+    <tbody>
+      <tr><td>Bocajarro (contacte)</td><td>Tot: gasos a pell, signe de Puppe-Werkgartner, boca de mina</td></tr>
+      <tr><td>Quemarropa (&lt;60 cm)</td><td>Flama + tatuatge + cintilla + cremada</td></tr>
+      <tr><td>Curta (60 cm – 1,5 m)</td><td>Tatuatge + cintilla; NO flama</td></tr>
+      <tr><td>Llarga (&gt;1,5 m)</td><td>❌ tatuatge · ✅ cintilla</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-warn">
+    <span class="label">Trampa Netflix</span>
+    «<em>Esferules de greix protruint de l'orifici d'entrada</em>» — això <strong>NO</strong> existeix. És inventat. Sí existeixen: granets de pólvora, negre de fum, cintilla de contusió.
+  </div>
+
+  <h3>Orifici de sortida — el secret</h3>
+  <ul>
+    <li><strong>Major o igual</strong> que l'entrada.</li>
+    <li>Vores <strong>evertides</strong>.</li>
+    <li>❌ cintilla de contusió. ❌ tatuatge.</li>
+  </ul>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ============================================================== -->
+<!-- CAPÍTOL 5 -->
+<!-- ============================================================== -->
+<section class="chapter" id="cap5">
+  <div class="chapter-num">Capítol 05</div>
+  <h2>Asfíxies mecàniques: quan l'aire no arriba</h2>
+  <p class="lead">~15% de les autòpsies forenses. La clau: identificar el mecanisme exacte i els signes específics de cadascun.</p>
+
+  <div class="overview">
+    <h4>★ Síndrome general d'asfíxia (SGA) — orientatiu, NO patognomònic</h4>
+    <ul>
+      <li>Hemorràgies <strong>petequials</strong>.</li>
+      <li>Congestió, edema, cianosi.</li>
+      <li>Augment de cavitats dretes.</li>
+      <li>Augment de la <strong>fluïdesa</strong> de la sang.</li>
+      <li>Modifica fenòmens: lividors precoces, refredament retardat, rigidesa intensa, putrefacció ràpida.</li>
+    </ul>
+  </div>
+
+  <h3>Ahorcadura vs Estrangulació vs Submersió</h3>
+
+  <h4>Ahorcadura · pes propi</h4>
+  <ul>
+    <li>++ <strong>Suïcida</strong>. Completa (suspés total) o incompleta (++).</li>
+    <li><strong>Solc</strong>: oblícu, ascendent cap al nus, <strong>incomplet</strong> (no envolta tot el coll), més marcat al costat oposat al nus.</li>
+    <li>Lesions internes a l'examen:
+      <ul>
+        <li><strong>Línia argentina de Thoinot</strong> — al fons del solc, la pell es condensa i s'esquerda amb transparència brillant platejada.</li>
+        <li>Signe de <strong>Martin</strong> → infiltració hemorràgica a la <em>íntima carotídea</em>.</li>
+        <li>Signe d'<strong>Amussat</strong> → desgarrats a l'<em>íntima carotídea</em>.</li>
+        <li>Signe d'<strong>Otto</strong> → hemorràgia retrofaríngea.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="callout callout-warn">
+    <span class="label">Trampa freqüent</span>
+    L'examen pot intercanviar:
+    Amussat → <em>jugulars</em> internes (FALS — és caròtides).
+    Otto → caròtides (FALS).
+    Martin → infiltració íntima caròtida (CERT).
+  </div>
+
+  <h4>Estrangulació · força activa</h4>
+  <ul>
+    <li>A llaç: solc <strong>horitzontal</strong>, complet (envolta tot el coll), inconstant.</li>
+    <li>A mà: SEMPRE homicida. Estigmes ungueals + equimosi al coll.</li>
+    <li>Antebraquial: per immobilització de seguretat. <strong>Sense</strong> lesions externes però moltes internes.</li>
+  </ul>
+
+  <h4>Sumersió · líquid a vies respiratòries</h4>
+  <ul>
+    <li>++ accidental.</li>
+    <li><strong>Cutis anserina</strong> (pell de gallina) per contractura piloerectora.</li>
+    <li>Maceració en guant/mitjó.</li>
+    <li>Bolet d'escuma a boca.</li>
+    <li><strong>Manchas de Paltauf</strong> als pulmons — petequials grans, més clares.</li>
+    <li>Enfisema aquós + &gt;500 ml d'aigua a l'estómac.</li>
+    <li>Aigua dolça → hipervolèmia + hemòlisi + ↑K, ↓Na.</li>
+    <li>Aigua salada → hemoconcentració + edema pulmonar + ↑Na.</li>
+  </ul>
+
+  <div class="callout callout-warn">
+    <span class="label">FAKE alert</span>
+    El <strong>signe de Wydler</strong> com a «aprimament interalveolar» <strong>NO existeix</strong> — és un distractor habitual.
+  </div>
+
+  <h3>Sofocacions — quan no entra aire d'una altra manera</h3>
+  <table>
+    <thead><tr><th>Tipus</th><th>Mecanisme</th><th>Marca</th></tr></thead>
+    <tbody>
+      <tr><td>Oclusió d'orificis respiratoris</td><td>Tapar boca/nas</td><td>++ accidental (nens)</td></tr>
+      <tr><td>Oclusió de vies respiratòries</td><td>Cos estrany (aliment)</td><td>++ accidental</td></tr>
+      <tr><td>Compressió tòraco-abdominal</td><td>No es pot expandir tòrax</td><td><strong>Màscara equimòtica</strong> — cara/coll/tòrax sup. congestius</td></tr>
+      <tr><td>Confinament</td><td>Espai tancat amb consum d'O₂ (combustió)</td><td>2 joves morts dins un maleter humit del ferri</td></tr>
+      <tr><td>Sepultament</td><td>Atrapats en espai reduït</td><td></td></tr>
+      <tr><td>Posicional</td><td>Posició compromet la respiració</td><td><strong>Criteris de Bell</strong> per al Dx</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-tip">
+    <span class="label">Criteris de Bell (asfíxia posicional)</span>
+    <ol>
+      <li>Cadàver en situació que <strong>interfereix amb la ventilació</strong>.</li>
+      <li>Explicar la <strong>incapacitat</strong> per alliberar-se.</li>
+      <li><strong>Excloure</strong> altres causes (autòpsia).</li>
+    </ol>
+  </div>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ============================================================== -->
+<!-- CAPÍTOL 6 -->
+<!-- ============================================================== -->
+<section class="chapter" id="cap6">
+  <div class="chapter-num">Capítol 06</div>
+  <h2>Agents físics: calor, fred, electricitat</h2>
+  <p class="lead">El cos signa de manera diferent davant cada agressor físic — cada un té el seu signe estrella.</p>
+
+  <h3>Cremades — pronòstic depèn de 3 factors</h3>
+  <ol><li>Superfície cremada</li><li>Edat</li><li>Profunditat</li></ol>
+
+  <table>
+    <thead><tr><th>Grau</th><th>Estructura</th><th>Clínica</th><th>Cicatriu</th></tr></thead>
+    <tbody>
+      <tr><td>1r</td><td>Epidermis</td><td>Eritema, edema, pruïja</td><td>❌</td></tr>
+      <tr><td>2n</td><td>Epi + dermis (respecta annexes)</td><td>Vesícules, ampolles, flictenes</td><td>❌</td></tr>
+      <tr><td>3r</td><td>Totes les capes (afecta annexes)</td><td>Escares</td><td>✅</td></tr>
+      <tr><td>4t</td><td>Tot — carbonització</td><td></td><td>✅</td></tr>
+    </tbody>
+  </table>
+
+  <p>Càlcul d'extensió: <strong>Regla dels 9 de Wallace</strong>.</p>
+
+  <h4>Característiques segons agent tèrmic</h4>
+  <table>
+    <thead><tr><th>Agent</th><th>Senyals</th></tr></thead>
+    <tbody>
+      <tr><td>Flama directa</td><td>Extenses, irregulars, carbonitza vell i cabells, respecta zones apretades per roba</td></tr>
+      <tr><td>Gasos en ignició</td><td>Molt extenses, poc profundes, respecta zones cobertes</td></tr>
+      <tr><td>Vapors a alta temperatura</td><td>Extenses, poc profundes, ✅ afectació de zones cobertes</td></tr>
+      <tr><td>Líquids calents (escaldadura)</td><td>Solcs, canals, sempre <em>descendents</em></td></tr>
+      <tr><td>Contacte</td><td>Limitades, reprodueixen la forma de l'agent</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-key">
+    <span class="label">A tots els incendis</span>
+    Determinar <strong>COHb</strong>. Rang típic en morts per incendi: <strong>30–60%</strong>.
+    En carbonitzats: posició de combat/boxeador, esquinçaments paral·lels a les fibres musculars (no traumàtics).
+  </div>
+
+  <h3>Hipotèrmia</h3>
+  <ul>
+    <li>Tcentral &lt;35 °C.</li>
+    <li>Lividors <strong>roig cirera</strong>; taques rosades-marrons a articulacions extensores.</li>
+    <li>Examen intern: <strong>úlceres de Wischnewsky</strong> a mucosa gàstrica (signe estrella).</li>
+  </ul>
+
+  <h3>Cop de calor</h3>
+  <ul>
+    <li>Tcentral &gt;40,5 °C. Urgència mèdica.</li>
+    <li>Fracàs multiorgànic + disfunció SNC (delirium, convulsions, coma).</li>
+  </ul>
+
+  <h3>Electricitat</h3>
+  <div class="compare">
+    <div class="compare-card left">
+      <h5>Baix voltatge (&lt;1000 V)</h5>
+      <ul><li>Necessita contacte directe</li><li>Mecanisme: fibril·lació ventricular</li><li>++ accidental domèstic</li></ul>
+    </div>
+    <div class="compare-card right">
+      <h5>Alt voltatge (&gt;1000 V)</h5>
+      <ul><li>No cal contacte (arc elèctric)</li><li>++ industrial</li></ul>
+    </div>
+  </div>
+
+  <div class="callout callout-key">
+    <span class="label">Patognomònic</span>
+    <strong>Marca elèctrica de Jellinek</strong> — reprodueix l'objecte conductor. Patognomònic.
+  </div>
+
+  <h3>Fulguració (rayos)</h3>
+  <ul>
+    <li>Només 1/3 mortals.</li>
+    <li>Roba arrancada o esquinçada (cos nu).</li>
+    <li><strong>Figura de Lichtenberg</strong> — dibuix arborescent del pas del corrent per la pell.</li>
+  </ul>
+
+  <div class="callout callout-tip">
+    <span class="label">Pregunta tipus</span>
+    Cadàver de dona semi-nu, descalç, roba dispersada en un bosc, sense lesions evidents → <strong>no es pot descartar fulguració</strong>. (La roba arrancada és pista.)
+  </div>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ============================================================== -->
+<!-- CAPÍTOL 7 -->
+<!-- ============================================================== -->
+<section class="chapter" id="cap7">
+  <div class="chapter-num">Capítol 07</div>
+  <h2>Catàstrofes i sumissió química</h2>
+  <p class="lead">Quan les víctimes són moltes o quan la víctima no recorda res — dos escenaris extrems.</p>
+
+  <h3>Sumissió química</h3>
+  <ul>
+    <li>Administració de psicoactives <strong>sense coneixement</strong> per fins delictius (++ delictes contra la llibertat sexual).</li>
+    <li>Edat ++ 18–24 anys, ++ dones.</li>
+    <li><strong>Vulnerabilitat química</strong> ≠ sumissió: la víctima ha consumit voluntàriament i el delinqüent aprofita.</li>
+    <li>Detecció:
+      <ul>
+        <li>Sang → fins a <strong>48h</strong></li>
+        <li>Orina → fins a <strong>7 dies</strong></li>
+        <li>Pèl → fins a <strong>7 setmanes</strong></li>
+      </ul>
+    </li>
+    <li>En &lt;24h ja han acudit el 80%.</li>
+  </ul>
+
+  <h3>Catàstrofes</h3>
+  <ul>
+    <li><strong>CRED</strong> (OMS) — registre. Criteris d'inclusió (1 dels 4): ≥10 morts · ≥100 afectats · estat d'emergència · ajuda internacional.</li>
+    <li><strong>RD 32/2009</strong> — víctimes múltiples = ≥5 morts.</li>
+  </ul>
+
+  <h4>Factors que intervenen en la gestió MF</h4>
+  <table>
+    <thead><tr><th>Factor</th><th>Subtipus</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Volum</strong></td><td>Menor (25–100) · Moderada (100–1000) · Major (&gt;1000)</td></tr>
+      <tr><td><strong>Localització</strong></td><td>Accessible o no</td></tr>
+      <tr><td><strong>Origen</strong></td><td>Natural o no natural (accidental/criminal/suïcida)</td></tr>
+      <tr><td><strong>Caràcter</strong></td><td><strong>Tancat</strong> = llista coneguda (avió, autocar IMSERSO) · <strong>Obert</strong> = llista no tancada (tren)</td></tr>
+      <tr><td><strong>Estat dels cossos</strong></td><td>Integritat, conservació</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-warn">
+    <span class="label">Confusió</span>
+    «<em>Caràcter obert = a l'aire lliure</em>» → <strong>FALS</strong>. Obert/tancat es refereix a si la llista de víctimes és coneguda, NO a la ubicació geogràfica.
+  </div>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ============================================================== -->
+<!-- CAPÍTOL 8 -->
+<!-- ============================================================== -->
+<section class="chapter" id="cap8">
+  <div class="chapter-num">Capítol 08</div>
+  <h2>Responsabilitat professional mèdica</h2>
+  <p class="lead">L'obligació del metge és <em>de mitjans</em>, no de resultats: «fer tot el possible» amb base científica, però sense garantir l'èxit.</p>
+
+  <h3>Els 4 elements imprescindibles</h3>
+  <div class="flow">
+    <div class="flow-node">1. Obligació preexistent</div>
+    <span class="flow-arrow">+</span>
+    <div class="flow-node">2. Error<br><em>(per acció o omissió)</em></div>
+    <span class="flow-arrow">+</span>
+    <div class="flow-node">3. Dany ocasionat</div>
+    <span class="flow-arrow">+</span>
+    <div class="flow-node">4. Relació de causalitat</div>
+  </div>
+  <p>Si en falta un → <strong>no hi ha responsabilitat</strong>. Però l'<em>error</em> sense dany continua sent rellevant deontològicament.</p>
+
+  <h3>Conceptes</h3>
+  <ul>
+    <li><strong>Lex artis</strong> — el conjunt de regles tècniques de la praxi correcta.</li>
+    <li><strong>Lex artis ad hoc</strong> — adaptada a les circumstàncies concretes.</li>
+    <li><strong>Normopraxi</strong> / <strong>malpraxi</strong>.</li>
+  </ul>
+
+  <h3>Vies de reclamació</h3>
+  <div class="flow">
+    <div class="flow-node bad">Penal<br><em>presó + inhabilitació</em></div>
+    <div class="flow-node">Civil<br><em>indemnització</em></div>
+    <div class="flow-node">Contenciós-administratiu<br><em>contra admin.</em></div>
+    <div class="flow-node good">Extrajudicial<br><em>mediació</em></div>
+    <div class="flow-node">Col·legial<br><em>deontologia</em></div>
+  </div>
+
+  <div class="callout callout-warn">
+    <span class="label">A l'examen</span>
+    En una demanda <em>civil</em> per cirurgia hi pot haver condemna, però <strong>NO presó ni inhabilitació</strong> — això només a la via <em>penal</em>.
+  </div>
+
+  <h3>Història clínica — concepte mèdic-legal</h3>
+  <p>«<strong>Lo que consta en la HC es lo que ha sucedido. Lo que no consta, no ha sucedido.</strong>»</p>
+
+  <h3>Accés a la HC — qui pot?</h3>
+  <ul>
+    <li>✅ Per ordre judicial.</li>
+    <li>✅ Inspector mèdic acreditat.</li>
+    <li>✅ Estudiant que la seva tutora li ha demanat explorar el pacient.</li>
+    <li>❌ Un company que vol veure com està un altre metge ingressat — <em>no n'hi ha justificació assistencial</em>.</li>
+  </ul>
+
+  <h3>Pèrdua d'oportunitat — RPM</h3>
+  <ol>
+    <li><em>Wrongful birth</em> → error ecogràfic gestacional priva d'informació decisòria.</li>
+    <li>Retard diagnòstic → indemnitza diferencial de supervivència.</li>
+    <li>Defecte d'informació → sense DCI signat, jurisprudència diu <strong>50% del dany</strong>.</li>
+  </ol>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ============================================================== -->
+<!-- CAPÍTOL 9 -->
+<!-- ============================================================== -->
+<section class="chapter" id="cap9">
+  <div class="chapter-num">Capítol 09</div>
+  <h2>Psiquiatria legal i forense</h2>
+  <p class="lead">Decisions sobre llibertat, capacitat, imputabilitat — i els terminis legals que cal saber al peu de la lletra.</p>
+
+  <h3>Internament involuntari — terminis sagrats</h3>
+  <div class="timeline">
+    <div class="tl-event"><span class="tl-time">24 h</span> El psiquiatre <strong>ha de comunicar al jutjat</strong>.</div>
+    <div class="tl-event"><span class="tl-time">72 h</span> El tribunal ha de <strong>ratificar</strong> la mesura.</div>
+    <div class="tl-event"><span class="tl-time">24 h</span> A urgències, màxim temps d'estada involuntària.</div>
+  </div>
+
+  <div class="callout callout-warn">
+    <span class="label">Punt clau</span>
+    Per raó de patologia psiquiàtrica, <strong>ningú que no sigui el pacient pot autoritzar el seu ingrés involuntari</strong> — ni els familiars ni el tutor. Cal autorització judicial.
+  </div>
+
+  <h3>Contenció mecànica — escala</h3>
+  <ol>
+    <li>Ambiental (entorn segur).</li>
+    <li>Verbal.</li>
+    <li>Farmacològica (BZD o olanzapina).</li>
+    <li>Física (momentània).</li>
+    <li>Mecànica (4 membres ± cinturó = 5 punts).</li>
+  </ol>
+
+  <div class="callout callout-key">
+    <span class="label">Normopraxi de la contenció</span>
+    <ul>
+      <li>SEMPRE acompanyada de contenció farmacològica.</li>
+      <li>Indicada per <strong>metge</strong> (excepció: urgència).</li>
+      <li>L'ingrés ha de ser <strong>involuntari</strong> per fer contenció per raó psíquica.</li>
+      <li>Es comunica al jutjat <em>immediatament</em> al passar a involuntari.</li>
+    </ul>
+  </div>
+
+  <div class="callout callout-warn">
+    <span class="label">Trampa</span>
+    «<em>Indicada per infermeria el dijous i ratificada pel metge el divendres</em>» → <strong>NO normopraxi</strong>. La indicació ha de ser mèdica de seguida.
+  </div>
+
+  <h3>Imputabilitat — les 2 premisses</h3>
+  <ol>
+    <li>Comprendre la <strong>il·licitud</strong> del fet.</li>
+    <li>Poder <strong>governar-se</strong> conforme a aquesta comprensió.</li>
+  </ol>
+  <p>Si falla alguna: <em>eximent</em> (completa, incompleta) o cap segons gravetat.</p>
+
+  <div class="callout callout-warn">
+    <span class="label">Important</span>
+    Un inimputable per psicosi NO pot ser <strong>incapacitat civilment al mateix procediment penal</strong>: requereix procediment civil propi. Sí pot ser condemnat a ingrés en centre psiquiàtric.
+  </div>
+
+  <h3>Capacitat: jurídica vs d'obrar</h3>
+  <div class="compare">
+    <div class="compare-card left">
+      <h5>Capacitat jurídica</h5>
+      <ul><li>Ser titular de drets/obligacions</li><li>S'adquireix amb el naixement</li><li><strong>No es perd</strong></li></ul>
+    </div>
+    <div class="compare-card right">
+      <h5>Capacitat d'obrar</h5>
+      <ul><li>Posada en pràctica dels drets</li><li>S'adquireix progressivament</li><li>Sí es pot modificar per via judicial</li></ul>
+    </div>
+  </div>
+
+  <h3>Eponímics i conceptes</h3>
+  <ul>
+    <li><strong>Psicòpata</strong> — sense empatia. Triada infantil: <em>piromania + maltractament animal + enuresi nocturna</em>. Agressivitat <em>premeditada</em>, NO impulsiva.</li>
+    <li><strong>Infanticidi</strong> ≠ <strong>neonaticidi</strong> (primeres 24h, sovint sense patologia psiquiàtrica subjacent).</li>
+    <li><strong>Dol eventual</strong>: hauria d'haver previst que podia passar.</li>
+    <li><strong>Simulació</strong> (fingir per evitar càstig) ≠ <strong>trastorn factici</strong> (simptomatologia intencional sense benefici extern clar) ≠ trastorn somatomorf.</li>
+  </ul>
+
+  <div class="callout callout-warn">
+    <span class="label">FAKE alert</span>
+    «Els psicòpates amb components sàdics o narcisistes responen <em>favorablement</em> a la teràpia» → <strong>FALS</strong>.
+    «Els psicòpates acaben desenvolupant esquizofrènia» → <strong>FALS</strong>.
+  </div>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ============================================================== -->
+<!-- CAPÍTOL 10 -->
+<!-- ============================================================== -->
+<section class="chapter" id="cap10">
+  <div class="chapter-num">Capítol 10</div>
+  <h2>Violència domèstica</h2>
+  <p class="lead">Distingir «violència contra la dona» de «violència de gènere» és la pregunta tipus.</p>
+
+  <div class="compare">
+    <div class="compare-card left">
+      <h5>Violència contra la dona</h5>
+      <p>Pel fet de ser dona. <em>Qualsevol</em> autor.</p>
+    </div>
+    <div class="compare-card right">
+      <h5>Violència de gènere</h5>
+      <p>Autor <strong>obligatòriament home</strong>. Víctima <strong>obligatòriament dona</strong>. <strong>Parella o ex-parella</strong>.</p>
+    </div>
+  </div>
+
+  <h3>Cicle de Walker i indefensió apresa</h3>
+  <p>La <strong>indefensió apresa</strong> destrueix l'autoestima: la víctima percep que res del que faci canviarà el resultat. Mantenedors: protecció a familiars, dependència econòmica, biaixos cognitius.</p>
+
+  <h3>Sobre l'agressor (FALSES típiques)</h3>
+  <ul>
+    <li>«Sol patir patologia psiquiàtrica» → <strong>FALS</strong>.</li>
+    <li>«Rarament s'associa a violència infantil» → <strong>FALS</strong> (es solapen).</li>
+    <li>«Les distorsions cognitives sobre la dona són infreqüents» → <strong>FALS</strong> — són la base.</li>
+    <li>Pot tenir trets obsessius, dependents, esquizoides, límits, antisocials o psicopàtics — això sí és cert.</li>
+  </ul>
+
+  <h3>Violència infantil</h3>
+  <ul>
+    <li>Contusions/fractures de diferent temps d'evolució en diferents zones → estudi familiar.</li>
+    <li>Patró d'escaldadura amb extremitats flexionades.</li>
+    <li>Fractures costals bilaterals (per pressió lateral).</li>
+    <li><strong>Shaken Baby</strong>: hemorràgies retinianes bilaterals + hematoma subdural. TCE = causa més freqüent de mort.</li>
+    <li>Fractures sospitoses: &lt;1–2 anys, que creuen sutures, deprimides.</li>
+    <li><strong>NEGLIGÈNCIA</strong> = forma més freqüent de maltractament infantil.</li>
+  </ul>
+
+  <h3>Obligació de denúncia</h3>
+  <table>
+    <thead><tr><th>Cas</th><th>Cal denunciar?</th></tr></thead>
+    <tbody>
+      <tr><td>Violència contra menor en àmbit familiar (lleu)</td><td>✅ SÍ</td></tr>
+      <tr><td>Violència contra ancià vulnerable conviu amb agressor (lleu)</td><td>✅ SÍ</td></tr>
+      <tr><td>Violència de gènere (lleu)</td><td>✅ SÍ</td></tr>
+      <tr><td>Violència entre dues dones adultes convivents (lleu)</td><td>❌ NO obligatori</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Violència durant confinament COVID</h3>
+  <ul>
+    <li>↑ Probabilitat: violència de gènere en convivència; violència física/sexual a menors convivents amb agressor.</li>
+    <li>↓ Probabilitat: <strong>denúncies</strong> per abusos sexuals a menors (no perquè hi hagi menys, sinó perquè hi ha menys oportunitat de denunciar).</li>
+    <li>NO es ralentitza el cicle de Walker — al contrari, s'accelera per la convivència forçada.</li>
+  </ul>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ============================================================== -->
+<!-- CAPÍTOL 11 -->
+<!-- ============================================================== -->
+<section class="chapter" id="cap11">
+  <div class="chapter-num">Capítol 11</div>
+  <h2>Autonomia del pacient</h2>
+  <p class="lead">Llei 41/2002. La regla bàsica: el titular de la informació és sempre el pacient.</p>
+
+  <h3>Consentiment informat</h3>
+  <ul>
+    <li><strong>CI</strong> ≠ <strong>DCI</strong>. El procés és verbal en general; <strong>per escrit</strong> en intervencions quirúrgiques, procediments invasius i medicina satisfactòria.</li>
+    <li>Sense DCI quan hi ha complicació → jurisprudència → 50% del dany.</li>
+  </ul>
+
+  <h3>Menor madur — escalada per edat</h3>
+  <table>
+    <thead><tr><th>Edat</th><th>Capacitat de decisió</th></tr></thead>
+    <tbody>
+      <tr><td>&lt;12 anys</td><td>Decideix el representant legal. L'opinió no s'escolta.</td></tr>
+      <tr><td>12–15 anys</td><td>El consentiment el dona el representant legal <strong>després d'escoltar el menor</strong>.</td></tr>
+      <tr><td>16–17 anys</td><td>Decideix el menor — <strong>EXCEPTE</strong> en <em>greu risc per a la vida</em>: consentirà el representant legal.</td></tr>
+      <tr><td>18 anys</td><td>Plena autonomia.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-warn">
+    <span class="label">Trampa habitual</span>
+    «Un menor de 16 anys <em>sempre</em> decideix en qüestions de salut» → <strong>FALS</strong>. En cas de greu risc vital, el representant legal.
+  </div>
+
+  <h3>Testigues de Jehovà · transfusió</h3>
+  <ul>
+    <li>Adult competent + es nega → es respecta. (Cirurgia es pot fer si no es preveu necessàriament transfusió, ja se decidirà.)</li>
+    <li>No competent + representants es neguen → en <strong>urgència vital</strong> es transfundeix igualment (autorització judicial si cal).</li>
+    <li>No competent + es té consentiment per representació → <strong>es pot transfondre</strong> si cal.</li>
+  </ul>
+
+  <h3>Secret mèdic — excepcions</h3>
+  <p>Pilar fonamental, però hi ha <strong>excepcions</strong>:</p>
+  <ul>
+    <li><strong>Risc per a tercers</strong> (ex: una pacient diu que enverina diàriament el seu marit) → <em>no</em> queda emparat pel secret.</li>
+    <li>Malalties de declaració obligatòria.</li>
+    <li>Lesions amb sospita delictiva → part judicial.</li>
+  </ul>
+
+  <h3>Instruccions prèvies</h3>
+  <ul>
+    <li>Persona <strong>major d'edat amb capacitat d'obrar</strong>, manifestada per escrit anticipadament.</li>
+    <li>Pot designar representant.</li>
+  </ul>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ============================================================== -->
+<!-- CAPÍTOL 12 -->
+<!-- ============================================================== -->
+<section class="chapter" id="cap12">
+  <div class="chapter-num">Capítol 12</div>
+  <h2>Valoració del dany corporal</h2>
+  <p class="lead">Baremo 35/2015. Quantificar el que no té preu — per poder indemnitzar.</p>
+
+  <h3>Perjudici · les dues columnes</h3>
+  <div class="compare">
+    <div class="compare-card left">
+      <h5>Personal</h5>
+      <p>Sofriment — compensació del patiment.</p>
+    </div>
+    <div class="compare-card right">
+      <h5>Patrimonial</h5>
+      <ul>
+        <li><strong>Dany emergent</strong> — despeses que apareixen (farmàcia, teràpia, enterrament).</li>
+        <li><strong>Lucre cessant</strong> — el que es deixa de guanyar.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Lesions — estructura del càlcul</h3>
+  <ul>
+    <li><strong>Temporal</strong> (fins a estabilització):
+      <ul>
+        <li>Personal temporal: dies + cirurgies.</li>
+        <li>Patrimonial temporal: despeses + lucre cessant.</li>
+      </ul>
+    </li>
+    <li><strong>Secuelar</strong> (després d'estabilització):
+      <ul>
+        <li>Seqüeles psicofísiques (màx <strong>100 punts</strong>).</li>
+        <li>Seqüeles estètiques (màx <strong>50 punts</strong> — més subjectiu).</li>
+        <li>Pèrdua de qualitat de vida + dany moral.</li>
+        <li>Patrimonial secuelar: despeses futures + lucre cessant futur.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="callout callout-warn">
+    <span class="label">A l'examen</span>
+    Cicatriu d'1 cm sense baixa laboral — <strong>SÍ</strong> es pot indemnitzar: perjudici estètic + despeses de farmàcia (si acreditades) + possible dany emergent. NO es pot dir «no cobrarà pels dies en curar perquè no hi va haver baixa».
+  </div>
+
+  <h3>Mort — qui rep indemnització</h3>
+  <ul>
+    <li>Cònjuge o parella inscrita / convivència ≥1 any (o menor si fill comú).</li>
+    <li>Descendents, ascendents, germans.</li>
+    <li>Allegats — quantia fixa (10.000 €).</li>
+    <li>La indemnització depèn de l'edat i de la dependència real.</li>
+  </ul>
+
+  <h3>Tipus d'homicidi penal</h3>
+  <ul>
+    <li><strong>Homicidi imprudent</strong> — no es pretenia matar.</li>
+    <li><strong>Homicidi dolós</strong> — es pretenia, o se sabia que podria produir-se.</li>
+    <li><strong>Assassinat</strong> — homicidi + alguna agravant (alevosía, preu, etc.) → pot suposar <strong>presó permanent revisable</strong>.</li>
+  </ul>
+
+  <div class="callout callout-tip">
+    <span class="label">Cas Kevin (l'apunyalament del nen)</span>
+    Apunyalament a un nen + espera nocturna emboscada al fill gran = <strong>assassinat amb alevosía</strong>. Pot ser presó permanent revisable. NO és violència de gènere (víctima home).
+  </div>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ============================================================== -->
+<!-- CAPÍTOL 13 -->
+<!-- ============================================================== -->
+<section class="chapter" id="cap13">
+  <div class="chapter-num">Capítol 13</div>
+  <h2>Documents medicolegals</h2>
+  <p class="lead">Confidencialitat sempre. Cada document té un destinatari i una funció diferents.</p>
+
+  <h3>Mapa dels documents</h3>
+  <table>
+    <thead><tr><th>Document</th><th>Per a què</th><th>Destinatari</th></tr></thead>
+    <tbody>
+      <tr><td>Part judicial de lesions</td><td>Lesions amb possible origen delictiu</td><td>Jutjat de guàrdia</td></tr>
+      <tr><td>Part sanitari</td><td>EDO (Malalties de declaració obligatòria), RAM</td><td>Salut Pública / vigilància</td></tr>
+      <tr><td>Part laboral</td><td>Causa de la baixa, durada prevista</td><td>Seguretat Social</td></tr>
+      <tr><td>Part d'informació pública</td><td>Personalitats il·lustres</td><td>Mitjans</td></tr>
+      <tr><td>Actes</td><td>Recollir hechos</td><td>Probatori</td></tr>
+      <tr><td><strong>Certificat mèdic de defunció</strong></td><td>Mort <strong>NATURAL</strong> exclusivament</td><td>Registre civil</td></tr>
+      <tr><td>Certificat ordinari</td><td>Salut general (el porta el pacient)</td><td>Pacient</td></tr>
+    </tbody>
+  </table>
+
+  <h3>EDO i COVID-19</h3>
+  <p>La COVID-19 va quedar introduïda a la <strong>Red Nacional de Vigilancia Epidemiológica</strong>. Les EDO <em>no</em> són un llistat tancat (afegir COVID no «desclassifica» el VIH).</p>
+
+  <h3>Certificat mèdic de defunció — només si...</h3>
+  <ol>
+    <li>Diagnòstic mèdic de mort fet (signes negatius + positius).</li>
+    <li>Identitat acreditada amb document oficial.</li>
+    <li>L'emet el metge que ha assistit en la darrera malaltia o qui reconegui el cadàver.</li>
+    <li><strong>NOMÉS</strong> en muertes naturals.</li>
+  </ol>
+
+  <p>Causes: <em>part I</em> — causa immediata + antecedents + única causa fonamental. <em>Part II</em> — altres contribuents.</p>
+
+  <h3>Eutanàsia — Llei orgànica 3/2021</h3>
+  <ul>
+    <li><strong>Requisits</strong>: nacionalitat espanyola o residència legal · major d'edat · competent · malaltia greu i incurable o sofriment greu crònic imposibilitant · informació per escrit del procés i alternatives.</li>
+    <li><strong>Procediment</strong>: 2 sol·licituds escrites separades per ≥15 dies. Metge responsable + metge consultor (no del mateix equip).</li>
+    <li><strong>Objecció de consciència</strong>: garantida, però <em>no pot frenar</em> el procediment.</li>
+    <li>La mort resultant es considera <strong>mort natural</strong> a efectes legals.</li>
+  </ul>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ============================================================== -->
+<!-- CAPÍTOL 14 -->
+<!-- ============================================================== -->
+<section class="chapter" id="cap14">
+  <div class="chapter-num">Capítol 14</div>
+  <h2>Medicina del treball</h2>
+  <p class="lead">Bernardino Ramazzini · pare de la disciplina. La gestió de l'IT i la classificació dels accidents són les preguntes infallibles.</p>
+
+  <h3>Accident de treball — les 6 categories</h3>
+  <ol>
+    <li><strong>Pròpiament dit</strong>: lesió per ocasió o conseqüència del treball.</li>
+    <li><strong>In itinere</strong>: anant o tornant del treball (trajecte habitual).</li>
+    <li><strong>In mision</strong>: tasques per ordres O <em>per interès del bon funcionament</em> espontani.</li>
+    <li>Tasques sindicals.</li>
+    <li>Malalties no de la llista que es contreuen pel treball, o agravament d'anteriors.</li>
+    <li>Lesions en hora i lloc de treball es presumeixen AT (salvo prova en contra).</li>
+  </ol>
+
+  <div class="callout callout-key">
+    <span class="label">Cas «Leonor va a la ferreteria»</span>
+    Es desvia del trajecte habitual per comprar una eina necessària pel funcionament del magatzem = <strong>in mision</strong> (no in itinere, ja que l'objectiu era una tasca laboral espontània, no anar al lloc de treball).
+  </div>
+
+  <h3>NO és AT</h3>
+  <ul>
+    <li>Força major aliena al treball (terratrèmol).</li>
+    <li>Dol o imprudència temerària del treballador.</li>
+  </ul>
+  <p>Sí és AT: imprudència <em>professional</em> per habitualitat.</p>
+
+  <h3>Incapacitat permanent — graus</h3>
+  <table>
+    <thead><tr><th>Grau</th><th>% rendiment</th><th>Pot treballar?</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Parcial per a la professió habitual</strong></td><td>≥33% disminució, sense impedir tasques fonamentals</td><td>SÍ, en la mateixa</td></tr>
+      <tr><td><strong>Total per a la professió habitual</strong></td><td>Inhabilita per tasques fonamentals</td><td>SÍ, en altres feines</td></tr>
+      <tr><td><strong>Absoluta per a tot treball</strong></td><td>Inhabilita per tota professió</td><td>NO</td></tr>
+      <tr><td><strong>Gran invalidesa</strong></td><td>Necessita assistència d'una altra persona</td><td>NO</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-warn">
+    <span class="label">Distinció important</span>
+    Un treballador amb <strong>38% de disminució SENSE impedir tasques fonamentals</strong> → <strong>IP parcial</strong>, NO IP total (l'IP total exigeix que estigui inhabilitat per les tasques fonamentals).
+  </div>
+
+  <h3>Qui resol què</h3>
+  <ul>
+    <li><strong>IT</strong> — la donen els metges de família.</li>
+    <li><strong>IP</strong> — la resol l'<strong>INSS</strong>; a Catalunya l'informe el fa l'<strong>ICAM</strong>.</li>
+  </ul>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ============================================================== -->
+<!-- CAPÍTOL 15 -->
+<!-- ============================================================== -->
+<section class="chapter" id="cap15">
+  <div class="chapter-num">Capítol 15</div>
+  <h2>Ginecologia · Obstetrícia · Toxicologia forense</h2>
+  <p class="lead">Tres àmbits sensibles: agressions sexuals, IVE, i la ciència del verí.</p>
+
+  <h3>Llei del «només sí és sí» — LO 10/1995 modificada</h3>
+  <ul>
+    <li>Ara <strong>tot és AGRESSIÓ</strong>: ja no hi ha distinció abús/agressió.</li>
+    <li>Agravants: gènere, sumissió química, número d'agressors.</li>
+    <li>Delicte <strong>semipúblic</strong> — requereix denúncia (al ministeri fiscal).</li>
+    <li>Prescripció en menors: comença a comptar als <strong>35 anys</strong> de la víctima.</li>
+  </ul>
+
+  <h3>Edats clau</h3>
+  <ul>
+    <li>Edat mínima per relacions sexuals: <strong>16 anys</strong>.</li>
+    <li>Edat mínima per casar-se: <strong>18 anys</strong> (16 si emancipat).</li>
+    <li>IVE: la dona pot decidir a partir dels <strong>16 anys</strong>.</li>
+  </ul>
+
+  <h3>IVE — Llei orgànica 2/2010</h3>
+  <table>
+    <thead><tr><th>Termini</th><th>Condició</th></tr></thead>
+    <tbody>
+      <tr><td>Fins 14 setmanes</td><td>Sense condició mèdica — decisió de la dona</td></tr>
+      <tr><td>14–22 setmanes</td><td><strong>Greu risc</strong> per a la vida/salut de la mare O greus anomalies fetals</td></tr>
+      <tr><td>&gt;22 setmanes</td><td>Anomalies <strong>incompatibles amb la vida</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Docimasies — el bebé va néixer viu?</h3>
+  <ul>
+    <li><strong>Radiogràfica de Bordas</strong>: transparència pulmonar si respira.</li>
+    <li><strong>Diafragmàtica de Casper</strong>: si respira, diafragma baixa al 6è EIC.</li>
+    <li><strong>Òptica de Bouchut</strong>: pulmó respirat = <em>rosa clar</em>; no respirat = <em>roig fosc</em>.</li>
+    <li><strong>Hidrostàtica de Galeno</strong>: el pulmó respirat <strong>flota</strong>.</li>
+    <li><strong>Gastrointestinal de Breslau</strong>: aire deglutit.</li>
+    <li><strong>Auricular de Wendt-Wreden</strong>: tap mucós oïda mitjana → desapareix.</li>
+  </ul>
+
+  <div class="callout callout-warn">
+    <span class="label">Trampa típica</span>
+    «<em>Presumirem que va néixer viu si els pulmons són roig fosc</em>» → <strong>FALS</strong>. Roig fosc = NO ha respirat. <em>Rosa clar</em> = respirat. La flotació també indica que ha respirat.
+  </div>
+
+  <h3>Toxicologia — la base</h3>
+  <ul>
+    <li><strong>DL50</strong> — dosi necessària per matar el 50% dels animals. <em>Específica per via</em> d'exposició; <em>varia entre individus</em>.</li>
+    <li>Pare: <strong>Mateu Orfila</strong>.</li>
+  </ul>
+
+  <div class="callout callout-warn">
+    <span class="label">FAKE clàssic</span>
+    «La DL50 és <em>única</em> per a tots els individus de la mateixa espècie si és la mateixa via» → <strong>FALS</strong>. Varia entre individus (per això s'expressa estadísticament).
+  </div>
+
+  <h3>Mostres segons l'estat del cos</h3>
+  <table>
+    <thead><tr><th>Estat</th><th>Mostres</th></tr></thead>
+    <tbody>
+      <tr><td>Viu</td><td>Sang, orina, saliva, cabell (mecó occipital per ús crònic)</td></tr>
+      <tr><td>Cadàver recent</td><td>Sang (subclàvia/cavitats cardíaques), orina, bilis, humor vitri</td></tr>
+      <tr><td>Cadàver descompost</td><td>Múscul, fetge (resistent), ronyó (acumula tòxics)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Tòxics estrella</h3>
+
+  <h4>Monòxid de carboni · CO</h4>
+  <ul>
+    <li>Llividors <strong>roig cirera</strong>, sang carmí. Pulmons amb <strong>edema acarminat de Lacassagne</strong>.</li>
+    <li>DL50: 50–70% COHb.</li>
+  </ul>
+
+  <h4>Cianhídric · CNH</h4>
+  <ul>
+    <li>Olor a <strong>ametlles amargues</strong>.</li>
+    <li>Bloqueja la citocrom-oxidasa → anòxia histotòxica global.</li>
+    <li>Fonts: incendis de plàstics, sals cianurades, glucósids cianogenètics (<strong>amigdalina</strong> en ametlles amargues — 60 ametlles poden matar un adult).</li>
+    <li>Forma sobreaguda: cop sobtat, pèrdua de coneixement, fins i tot un crit.</li>
+    <li>Síndrome general d'asfíxia, color roig intens (com CO), <strong>llividors paradoxals</strong>, rigidesa precoç i intensa per convulsions prèvies.</li>
+  </ul>
+
+  <div class="callout callout-warn">
+    <span class="label">Trampa subtil</span>
+    En cianhídric NO trobaràs «alteracions a nucli pàl·lid i substància blanca» — això és típic d'<em>intoxicacions per CO crònica</em>, no de cianhídric sobreagut. (Aquesta exacta pregunta cau.)
+  </div>
+
+  <h4>Alcohol etílic</h4>
+  <ul>
+    <li>Determinació directa: sang. Indirecta: humor vitri.</li>
+    <li><strong>Corba de Widmark</strong> — etapa de meseta per als controls de trànsit.</li>
+    <li>Dosi tòxica adult: 5–8 g/kg. Nen: 3 g/kg. Alcoholemies &gt;4,5 g/L poden ser letals.</li>
+  </ul>
+
+  <h4>Drogues d'abús — signes ràpids</h4>
+  <ul>
+    <li>Cocaïna → perforació del envà nasal.</li>
+    <li>Heroïna → pèrdua de peces dentals.</li>
+    <li>Poppers (nitrits) → context <em>chemsex</em>.</li>
+  </ul>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ============================================================== -->
+<!-- TIPS PER A L'MCQ -->
+<!-- ============================================================== -->
+<section class="tip-bank" id="tips">
+  <div class="tip-bank-inner">
+    <h2>★ Tips per atacar l'MCQ</h2>
+    <p style="font-size:18px; opacity:.85; max-width:680px;">Tota la teoria és inútil si caus en una trampa de redacció. Aquestes 12 regles surten directament del patró de preguntes de l'examen original.</p>
+
+    <div class="tip">
+      <span class="tip-num">1</span> <strong>Marca el "NO" / "FALS"</strong> a l'enunciat abans de llegir les opcions. Mig de les preguntes són en negatiu i el cervell tendeix a oblidar-ho cap a l'opció (d).
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">2</span> <strong>Sospita dels eponímics que sonen reals però són falsos.</strong> Inventen signes (signe d'Otto a caròtides, signe de Wydler «interalveolar», «esferules de greix a l'orifici d'entrada»). Si no l'has vist mai, probablement no existeix — però compte: <em>línia argentina de Thoinot</em> SÍ existeix.
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">3</span> <strong>Les opcions ridículament categòriques solen ser falses:</strong> «<em>sempre</em>», «<em>mai</em>», «<em>tots</em>», «<em>cap</em>», «<em>amb seguretat absoluta</em>». Especialment a preguntes de psiquiatria ("els psicòpates desenvolupen esquizofrènia", "el secret mèdic sense excepcions").
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">4</span> <strong>Cronotanatodiagnòstic per descartament.</strong> Si t'expliquen lividors fixades → ≥12h. Sense taca verda → &lt;24h. Rigidesa entrant però no completa → entre 3h i 24h. Encreua-ho.
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">5</span> <strong>Memoritza les xifres exactes</strong>: 24h/72h (ingrés involuntari) · 33% (IP parcial) · 14/22 setmanes (IVE) · 16 anys (consentiment sexual i IVE) · 15 dies (eutanàsia entre sol·licituds) · 7 dies/7 setmanes (orina/cabell sumissió química) · 50% (defecte d'informació) · 100/50 punts (psicofísic/estètic).
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">6</span> <strong>Diferencia "violència de gènere" vs "violència contra la dona".</strong> Cada any cau. Gènere requereix home autor + dona víctima + parella/ex.
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">7</span> <strong>Accident in itinere vs in mision:</strong> in itinere és anar/tornar de casa. In mision és per ordres o interès espontani de l'empresa — encara que desviï la ruta. Si la persona s'està desviant per una tasca laboral → in mision.
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">8</span> <strong>Precipitació no ha de fer destrosses visibles a la pell.</strong> El cuadre típic és <em>pell intacta + destrosses internes</em>. Si una opció diu «l'absència de lesions a la pell descarta precipitació», és falsa.
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">9</span> <strong>El forense NO depèn de la policia.</strong> Treballa sota el jutge i a l'IML o INT. Si una opció diu que «treballa sota Policia Nacional o Guàrdia Civil», és incorrecta.
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">10</span> <strong>Pulmons rosa clar = ha respirat. Roig fosc = no ha respirat.</strong> Flotació també indica respiració. Memoritza el sentit per no caure en la trampa Bouchut.
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">11</span> <strong>«Daño desproporcionado», sense DCI, jurisprudència estranya:</strong> en demanda <em>civil</em> per cirurgia hi pot haver condemna però <strong>mai presó</strong> (això és penal).
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">12</span> <strong>Esto NO és delicte al codi penal espanyol:</strong> el exhibicionisme davant <em>adults</em> a la via pública. Sí ho són: tocaments a persona privada de consciència, lucrar-se de la prostitució de tercer, mera possessió de pornografia infantil.
+    </div>
+
+    <h3 style="margin-top:48px">Última estratègia: penalització per fallida</h3>
+    <p style="opacity:.85">A l'examen real <strong>cada error resta 0,33 punts</strong>. Si no estàs un 70%+ segur, sovint val més deixar-la en blanc. Però primer: pots reduir a 2 opcions amb les regles d'aquí dalt? Si sí, val la pena tirar.</p>
+
+    <div style="text-align:center; margin-top:48px; font-size:36px; letter-spacing:12px; color:var(--gold)">★ ★ ★</div>
+    <p style="text-align:center; font-style:italic; margin-top:24px; opacity:.7">Sort, Lorena.</p>
+  </div>
+</section>
+
+<div class="footer">
+  Material de repàs per a l'examen final de Medicina Legal i Forense · ESADE C8 ·
+  Format basat en el temari del professor.
+</div>
+
+<script>
+  // progress bar
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    bar.style.width = pct + '%';
+  });
+</script>
+</body>
+</html>

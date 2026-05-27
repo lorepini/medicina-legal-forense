@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examen Final · Medicina Legal i Forense · Quiz Bank</title>
+<style>
+  :root{
+    --bg:#f6f7f8;
+    --card:#ffffff;
+    --border:#d9dadb;
+    --accent:#0f6cbf;
+    --accent-dark:#094a86;
+    --green:#357a32;
+    --green-bg:#e6f4e6;
+    --red:#a02828;
+    --red-bg:#fbe6e6;
+    --yellow-bg:#fff7d6;
+    --muted:#6a737d;
+    --text:#1d2125;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif;font-size:16px;line-height:1.45}
+  h1,h2,h3,h4,.sans{font-family:"Helvetica Neue",Arial,sans-serif}
+  header.top{background:var(--accent);color:#fff;padding:18px 22px;box-shadow:0 2px 4px rgba(0,0,0,.08)}
+  header.top h1{margin:0 0 4px 0;font-size:1.35rem;font-weight:600}
+  header.top p{margin:0;font-size:.92rem;opacity:.95}
+  nav.tabs{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  nav.tabs button{flex:1 1 auto;min-width:120px;background:none;border:none;border-bottom:3px solid transparent;padding:14px 12px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;color:var(--muted);transition:all .15s}
+  nav.tabs button:hover{background:#f0f4f8;color:var(--accent-dark)}
+  nav.tabs button.active{color:var(--accent-dark);border-bottom-color:var(--accent);background:#fff}
+  main{max-width:880px;margin:0 auto;padding:18px 16px 80px}
+  .block{display:none}
+  .block.active{display:block}
+  .scorebar{position:sticky;top:48px;z-index:15;background:#fff;border:1px solid var(--border);border-radius:6px;padding:10px 14px;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .scorebar .score-text{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.92rem;color:var(--muted)}
+  .scorebar .score-text strong{color:var(--text);font-size:1.05rem}
+  .scorebar .actions{display:flex;gap:8px;flex-wrap:wrap}
+  .scorebar button{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.88rem;font-weight:500;border:1px solid var(--accent);background:var(--accent);color:#fff;padding:7px 14px;border-radius:4px;cursor:pointer;transition:background .12s}
+  .scorebar button:hover{background:var(--accent-dark)}
+  .scorebar button.secondary{background:#fff;color:var(--accent)}
+  .scorebar button.secondary:hover{background:#eef4fa}
+  .summary{margin-bottom:16px;padding:12px 16px;border-radius:6px;font-family:"Helvetica Neue",Arial,sans-serif;font-weight:500;display:none}
+  .summary.show{display:block}
+  .summary.good{background:var(--green-bg);color:var(--green);border:1px solid #b5dab2}
+  .summary.mid{background:var(--yellow-bg);color:#8a6b00;border:1px solid #e8d57a}
+  .summary.bad{background:var(--red-bg);color:var(--red);border:1px solid #e0a0a0}
+  .qcard{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:14px 18px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03);transition:border-color .2s}
+  .qcard.correct{border-color:#9bc69a;background:#f4faf4}
+  .qcard.wrong{border-color:#d8a0a0;background:#fbf4f4}
+  .qhead{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.82rem;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+  .qhead .verdict{font-weight:600}
+  .qhead .verdict.correct{color:var(--green)}
+  .qhead .verdict.wrong{color:var(--red)}
+  .qstem{font-size:1rem;margin:4px 0 10px 0;line-height:1.55}
+  .qstem .neg{font-weight:700;text-transform:uppercase}
+  .qprompt{font-family:"Helvetica Neue",Arial,sans-serif;font-size:.88rem;color:var(--muted);margin-bottom:6px;font-style:italic}
+  .opts{list-style:none;padding:0;margin:0}
+  .opts li{padding:7px 10px;border-radius:4px;margin:2px 0;cursor:pointer;transition:background .12s;display:flex;align-items:flex-start;gap:8px}
+  .opts li:hover{background:#eef4fa}
+  .opts li.correct-opt{background:var(--green-bg)}
+  .opts li.wrong-opt{background:var(--red-bg)}
+  .opts label{cursor:pointer;flex:1;display:flex;align-items:flex-start;gap:8px;line-height:1.45}
+  .opts input[type=radio],.opts input[type=checkbox]{margin-top:4px;cursor:pointer;flex-shrink:0}
+  .opts .lett{font-weight:600;margin-right:2px;min-width:18px}
+  .feedback{display:none;margin-top:10px;padding:8px 12px;border-left:3px solid var(--green);background:#f4faf4;font-style:italic;color:var(--green);font-size:.94rem;line-height:1.5}
+  .feedback.show{display:block}
+  .disclaimer{font-size:.85rem;color:var(--muted);background:#fffbe6;border:1px solid #f0e6a8;padding:10px 14px;border-radius:6px;margin-bottom:16px;font-family:"Helvetica Neue",Arial,sans-serif}
+  footer{text-align:center;color:var(--muted);font-size:.82rem;padding:30px 16px;font-family:"Helvetica Neue",Arial,sans-serif}
+  @media(max-width:600px){
+    header.top h1{font-size:1.1rem}
+    main{padding:14px 10px 60px}
+    .qcard{padding:11px 13px}
+    nav.tabs button{font-size:.85rem;padding:11px 6px}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>Examen Final · Medicina Legal i Forense · Quiz Bank</h1>
+  <p>Banc de preguntes tipus Moodle · 1 examen real + 3 simulacres · Trieu-ne una per pregunta i premeu "Comprovar respostes"</p>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button data-tab="example" class="active">Example (examen real)</button>
+  <button data-tab="mock1">Mock 1</button>
+  <button data-tab="mock2">Mock 2</button>
+  <button data-tab="mock3">Mock 3</button>
+</nav>
+
+<main>
+
+<section class="block active" id="block-example">
+  <div class="scorebar">
+    <div class="score-text">Puntuació: <strong><span class="score">0</span>/<span class="total">40</span></strong></div>
+    <div class="actions">
+      <button data-action="check">Comprovar respostes</button>
+      <button data-action="reset" class="secondary">Reiniciar bloc</button>
+    </div>
+  </div>
+  <div class="summary" data-summary></div>
+  <div class="disclaimer">
+    Bloc <strong>Example</strong>: examen final real, 1ª convocatòria — Grup 3 (15 juny 2020). Reproducció verbatim de les 40 preguntes amb les respostes correctes marcades pel professor. Les preguntes 6, 22, 34 i 35 són de tipus <em>Completa Sense qualificar</em> (admeten més d'una resposta correcta — basta marcar-ne una de bona sense marcar-ne cap de falsa).
+  </div>
+  <div class="questions"></div>
+</section>
+
+<section class="block" id="block-mock1">
+  <div class="scorebar">
+    <div class="score-text">Puntuació: <strong><span class="score">0</span>/<span class="total">40</span></strong></div>
+    <div class="actions">
+      <button data-action="check">Comprovar respostes</button>
+      <button data-action="reset" class="secondary">Reiniciar bloc</button>
+    </div>
+  </div>
+  <div class="summary" data-summary></div>
+  <div class="questions"></div>
+</section>
+
+<section class="block" id="block-mock2">
+  <div class="scorebar">
+    <div class="score-text">Puntuació: <strong><span class="score">0</span>/<span class="total">40</span></strong></div>
+    <div class="actions">
+      <button data-action="check">Comprovar respostes</button>
+      <button data-action="reset" class="secondary">Reiniciar bloc</button>
+    </div>
+  </div>
+  <div class="summary" data-summary></div>
+  <div class="questions"></div>
+</section>
+
+<section class="block" id="block-mock3">
+  <div class="scorebar">
+    <div class="score-text">Puntuació: <strong><span class="score">0</span>/<span class="total">40</span></strong></div>
+    <div class="actions">
+      <button data-action="check">Comprovar respostes</button>
+      <button data-action="reset" class="secondary">Reiniciar bloc</button>
+    </div>
+  </div>
+  <div class="summary" data-summary></div>
+  <div class="questions"></div>
+</section>
+
+</main>
+
+<footer>Quiz generat per a estudi · Medicina Legal i Forense · UIC</footer>
+
+<script>
+/* ====== DATA ====== */
+/* Each question: { stem, prompt (optional), opts: [a,b,c,d], correct: index OR array of indices, feedback } */
+
+const BANKS = {
+  example: [
+    {stem:"Las lesiones internas que puede observarse en caso de muerte por ahorcadura incluyen:",
+     opts:["La línea argentina, que se corresponde con una lesión interna a nivel del surco de ahorcadura donde la piel se condensa y resquebraja en su profundidad, presentando una trasparencia brillante.","El signo de Otto, que se corresponde con desgarros en la íntima de las carótidas.","El signo de Martin, que se corresponde con una infiltración hemorrágica en la íntima carotidea.","El signo de Amussat, que se corresponde con desgarros en la íntima de las yugulares internas."],
+     correct:0, feedback:"La línea argentina, que se corresponde con una lesión interna a nivel del surco de ahorcadura donde la piel se condensa y resquebraja en su profundidad, presentando una trasparencia brillante."},
+
+    {stem:"En tu segunda guardia como médico de familia te desplazas a un domicilio y te encuentras con un hombre de 25 años que ha fallecido, presuntamente, como consecuencia de una reacción adversa a drogas de abuso presumiblemente de etiología accidental. La familia te solicita que emitas el certificado médico de defunción ya que no desean que se le practique la autopsia a su familiar. ¿Cuál de las siguientes afirmaciones no sería adecuada al caso?",
+     opts:["Informas a la familia que no puedes emitir el certificado médico de defunción.","Informas a la familia que lo más probable es que un médico forense se desplace al domicilio para efectuar el levantamiento de cadáver.","Informas a la familia que al tratarse de una muerte no natural existe la obligación de informar al juzgado de guardia inmediatamente.","Informas a la familia que, tratándose de una muerte accidental, lo más probable es que una vez el médico forense haya examinado al cadáver, no será necesaria la práctica de la autopsia."],
+     correct:3, feedback:"Informas a la familia que, tratándose de una muerte accidental, lo más probable es que una vez el médico forense haya examinado al cadáver, no será necesaria la práctica de la autopsia."},
+
+    {stem:"Estás haciendo cola dentro de tu coche para subir al Ferry que te lleva desde Tarifa a Tánger. Hay retraso porque cuando ha llegado el Ferry procedente de Tánger la guardia civil ha encontrado el cadáver de dos jóvenes en el interior del maletero de un coche. Sus vestidos y piel están húmedos. A partir de los datos de los que disponemos ¿Qué tipo de muerte debemos sospechar?",
+     opts:["Hipotermia.","Sofocación por carencia de aire respirable, por confinamiento.","Sofocación por asfixia posicional.","Intoxicación por monóxido de carbono."],
+     correct:1, feedback:"Sofocación por carencia de aire respirable, por confinamiento."},
+
+    {stem:"Leonor tiene 89 años y se encuentra afecta de un proceso neurodegenerativo con un deterioro cognitivo grave, con una plena anosognosia de su trastorno y sus limitaciones. ¿Cuál de las siguientes afirmaciones es CORRECTA?",
+     opts:["La incapacitación puede ser decidida por la familia sin someterla a un procedimiento judicial.","De instarse el procedimiento de modificación de la capacidad, las opciones son que sea declarada plenamente incapaz o que no se modifique en absoluto su capacidad.","Podrá ser demandada por sus familiares, quienes instarán un procedimiento de modificación de la capacidad (incapacitación) para que se asigne a alguien que le de soporte en el gobierno de su persona y de sus bienes.","De sentenciarse por un juez la modificación de la capacidad de Leonor, ésta no podrá ser reintegrada aunque existiera mejoría."],
+     correct:2, feedback:"Podrá ser demandada por sus familiares, quienes instarán un procedimiento de modificación de la capacidad (incapacitación) para que se asigne a alguien que le de soporte en el gobierno de su persona y de sus bienes."},
+
+    {stem:"Kevin apuñala en 20 ocasiones al hijo de 4 años de su pareja y espera pacientemente agazapado en la oscuridad de la noche, con la cara cubiera, hasta que el mayor de los hijos de ésta sale al patio trasero de la casa, matándolo de 6 puñaladas. ¿Cuál de las siguientes afirmaciones NO es posible?",
+     opts:["Que los delitos prescriban si no es atrapado durante décadas.","Que sea condenado a prisión permanente revisable.","Que sea condenado por delitos de asesinato.","Que sea condenado por violencia de género"],
+     correct:3, feedback:"Que sea condenado por violencia de género"},
+
+    {stem:"COMPLETA SENSE QUALIFICAR. Un bebé recién nacido es encontrado muerto, abandonado en un contenedor. ¿Cuál de las siguientes afirmaciones NO es correcta?",
+     opts:["Si se trata de un neonaticido es menos probable encontrar patologia que en los infanticidios.","Presumiremos que nació vivo si sus pulmones son de color rojo oscuro.","Si se demuestra que no nació vivo y es fruto de un aborto provocado, puede no resultar delictivo, sean cuales fueran las circunstancias en que produjo el aborto, si se demuestra que padecía una enfermedad extremadamente grave e incurable.","Presumiremos que nació vivo si sus pulmones flotan en el agua."],
+     correct:[1,2], feedback:"Presumiremos que nació vivo si sus pulmones son de color rojo oscuro., Si se demuestra que no nació vivo y es fruto de un aborto provocado, puede no resultar delictivo, sean cuales fueran las circunstancias en que produjo el aborto, si se demuestra que padecía una enfermedad extremadamente grave e incurable."},
+
+    {stem:"En tu última guardia como médico de familia te desplazas a un domicilio y te encuentras con una mujer fallecida de 78 años. Su marido refiere que tras comerse un bolsa grande de almendras ha empezado a experimentar un grave malestar, ha gritado, perdiendo el conocimiento y cayendo al suelo, convulsionando posteriormente y falleciendo en pocos minutos. ¿Cuáles de los siguientes hallazgos NO es característico en esta causa de muerte?",
+     opts:["Síndrome general de asfixia.","Rigidez precoz e intensa.","Coloración rojizo claro (sonrosado) de la piel y de la sangre.","Hallazgo de alteraciones en el núcleo pálido y sustancia blanca, en el examen del cerebro."],
+     correct:3, feedback:"Hallazgo de alteraciones en el núcleo pálido y sustancia blanca, en el examen del cerebro."},
+
+    {stem:"Señala la afirmación CORRECTA respecto al concepto de menor maduro en relación a un acto médico general",
+     opts:["La opinión de un menor que cuenta con 13 años de edad no será ni siquiera oída.","Un menor que cuenta con 16 años de edad siempre decidirá en cuestiones de salud","Si los representantes legales adoptan decisiones contrarias al mayor interés de un menor de 7 años, el médico no puede hacer nada.","En caso de grave riesgo para la vida de un menor de 17 años de edad, consentirá su representante legal."],
+     correct:3, feedback:"En caso de grave riesgo para la vida de un menor de 17 años de edad, consentirá su representante legal."},
+
+    {stem:"Leonor trabaja de encargada de almacén en la misma fábrica desde hace 12 años. Suele ir en coche a trabajar. Hoy, ha salido de casa aproximadamente 30 minutos antes del inicio de su jornada laboral, ya que sabe que el trayecto entre su casa y su lugar de trabajo supone unos 25 minutos de viaje en coche. En un primer momento, su itinerario es el óptimo para ir desde su casa al trabajo. Sin embargo, de manera espontánea recuerda que en el almacén les falta una herramienta imprescindible para el desarrollo del trabajo que tienen pendiente y decide, como ya ha hecho en múltiples ocasiones anteriormente, desviarse de su recorrido habitual para comprar dicha herramienta en una ferretería. Durante el trayecto hacia la ferretería sufre un accidente de coche, fracturándose el fémur izquierdo. ¿Cómo debe calificarse dicho accidente de tráfico según la Ley General de la Seguridad Social?",
+     opts:["El hecho de que haya decidido de manera espontánea realizar una actuación en interés del buen funcionamiento de la empresa, sin recibir ninguna orden de su superior para llevarla a cabo, impide la calificación como accidente de trabajo y por tanto debe calificarse como accidente no laboral.","El hecho de que se haya desviado de su trayecto habitual impide la calificación como accidente de trabajo y por tanto debe calificarse como accidente no laboral.","Debe considerarse un Accidente de trabajo, in mision.","Debe considerarse un Accidente de trabajo, in itinere."],
+     correct:2, feedback:"Debe considerarse un Accidente de trabajo, in mision."},
+
+    {stem:"Durante el confinamiento por la COVID-19 sales a hacer running y para cruzarte con el menor número de personas posibles te diriges hacia una zona deshabitada donde están construyendo varios edificios de 8 plantas. Mientras pasas por debajo de un edificio te encuentras con el cadáver de un hombre de unos 50 años, en decúbito prono, en ausencia de graves lesiones visibles en la piel a partir de la inspección externa del cadáver. Al mirar hacia arriba distingues una ventana de cristal rota en el cuarto piso. Señala la afirmación FALSA respecto al caso.",
+     opts:["Con los datos de los que disponemos no podemos descartar que la muerte haya sido consecuencia de una precipitación.","Lo más probable es que el examen interno del cadáver en el momento de la autopsia ponga de manifiesto roturas o estallidos viscerales muy importantes.","En ausencia de un estallido del cráneo en saco de nueces podemos descartar una precipitación sobre la cabeza.","La ausencia de lesiones importantes a nivel de la piel nos hace descartar la precipitación como causa de muerte."],
+     correct:3, feedback:"La ausencia de lesiones importantes a nivel de la piel nos hace descartar la precipitación como causa de muerte."},
+
+    {stem:"Kevin, con una discapacidad intelectiva leve, precisa ingreso en una unidad de psiquiatría por ideación suicida. ¿Cuál de las siguientes afirmaciones es CORRECTA?",
+     opts:["Puesto que está afecto de una discapacidad intelectiva sus familiares podrán autorizar el ingreso en su nombre.","Puesto que la discapacidad intelectiva es de grado leve, no es posible el ingreso involuntario.","Al no existir enfermedad infecto-contagiosa no corresponde un ingreso contra su voluntad.","El ingreso involuntario precisará comunicación al juzgado en el plazo de 24 horas y ratificación de la medida en un plazo de 72h desde que el tribunal tenga conocimiento."],
+     correct:3, feedback:"El ingreso involuntario precisará comunicación al juzgado en el plazo de 24 horas y ratificación de la medida en un plazo de 72h desde que el tribunal tenga conocimiento."},
+
+    {stem:"Kevin es médico forense. ¿Cúal de las siguientes afirmaciones es INCORRECTA?",
+     opts:["Ejerce en un Instituto de Medicina Legal o en el Instituto Nacional de Toxicología","Trabaja bajo las instrucciones de Policía Nacional, Guardia Civil o las policías autonómicas","Es un funcionario público","Es graduado o licenciado en Medicina (o Medicina y Cirugía)"],
+     correct:1, feedback:"Trabaja bajo las instrucciones de Policía Nacional, Guardia Civil o las policías autonómicas"},
+
+    {stem:"Leonor acude al abogado del Colegio de Médicos muy asustada tras recibir en su domicilio una demanda por presunta negligencia médica en relación a una cirugía abdominal. ¿Cuál de las siguientes afirmaciones es INCORRECTA?",
+     opts:["Puede existir condena si se considera un caso de daño desproporcionado","Si está correctamente asegurada y la cuantía no supera el límite de la póliza, la indemnización será cubierta por el seguro.","Si no existe documento de consentimiento informado el riesgo de condena es muy elevado.","Puede haber riesgo de pena de prisión e inhabilitación"],
+     correct:3, feedback:"Puede haber riesgo de pena de prisión e inhabilitación"},
+
+    {stem:"Leonor, ama de casa, en una relación de pareja que en ocasiones parece cercana a una situación de violencia de género, confiesa a su médico de cabecera una de las siguientes situaciones, ¿cuál NO estaría amparada por el secreto médico?",
+     opts:["Leonor ha consumido sustancias tóxicas el fin de semana pasado en una fiesta.","Leonor ha sido infiel a su marido y tiene dudas sobre si podría estar embarazada y la paternidad del posible hijo.","Leonor no tolera más su relación de pareja y administra veladamente un antihiperstensivo a su marido cada noche con la fantasía de que no despierte","Todas estarían amparadas puesto que el secreto médico es un pilar del ejercicio de la Medicina, sin excepciones."],
+     correct:2, feedback:"Leonor no tolera más su relación de pareja y administra veladamente un antihiperstensivo a su marido cada noche con la fantasía de que no despierte"},
+
+    {stem:"Kevin se encuentra ingresado en un hospital psiquiátrico en contención mecánica. ¿Cuál de las siguientes situaciones NO se ajusta a la normopraxis asistencial?",
+     opts:["La medida fue indicada por personal de enfermería el jueves por la tarde y fue ratificada por el facultativo referente la mañana del viernes.","El personal intentó previamente la contención verbal y farmacológica, en un contexto asistencial en que la contención ambiental está garantizada.","La medida fue aplicada en el contexto de un ingreso voluntario por empeoramiento franco del paciente, comunicándose al juzgado inmediatamente el paso a involuntario.","La medida ha precisado una intensificación de los cuidados enfermeros y las revisiones de la situación por parte del psiquiatra."],
+     correct:0, feedback:"La medida fue indicada por personal de enfermería el jueves por la tarde y fue ratificada por el facultativo referente la mañana del viernes."},
+
+    {stem:"Respecto a la denominada Dosis Letal 50 de una sustancia tóxica, señala la opción FALSA:",
+     opts:["La Dosis Letal de una sustancia es única para todos los individuos de una misma especie, si se trata de la misma vía de exposición.","Es muy difícil disponer de la Dosis Letal 50 en el caso de los humanos.","La Dosis Letal 50 puede variar en una misma sustancia según la vía de exposición a la misma.","La Dosis Letal 50 se refiere a la dosis necesaria de una sustancia para producir la muerte en el 50% de los animales a los que se administra."],
+     correct:0, feedback:"La Dosis Letal de una sustancia es única para todos los individuos de una misma especie, si se trata de la misma vía de exposición."},
+
+    {stem:"¿En cuál de los siguientes supuestos NO estaría autorizado el acceso a la historia clínica de un paciente?",
+     opts:["Desde el juzgado solicitan al centro la historia clínica de un paciente en virtud de un procedimiento de presunta negligencia médica.","Un inspector médico de la Administración debidamente acreditado durante una inspección del centro solicita el acceso a una historia clínica seleccionada aleatoriamente.","Un facultativo de cardiología accede a la historia clínica de su compañero cardiólogo que acaba de ingresar en el hospital que ambos trabajan para ver qué tal se encuentra y si le podría ayudar en algo.","Un estudiante de Medicina accede a la historia clínica del paciente al cual su tutor le ha pedido que explore e historie durante las prácticas."],
+     correct:2, feedback:"Un facultativo de cardiología accede a la historia clínica de su compañero cardiólogo que acaba de ingresar en el hospital que ambos trabajan para ver qué tal se encuentra y si le podría ayudar en algo."},
+
+    {stem:"El gobierno ha declarado la COVID-19 como enfermedad de declaración obligatoria. ¿Cuál de las siguientes afirmaciones es CORRECTA?",
+     opts:["Las enfermedades de declaración obligatoria son un listado cerrado, por lo tanto, la introducción de la COVID-19 ha supuesto la desclasificación del VIH.","El familiar del paciente cumplimentará un formulario amarillo sobre la enfermedad.","Esta nueva inclusión no supone ninguna obligación añadida para los facultativos.","Queda introducida en la vigilancia epidemiológica de la Red Nacional de Vigilancia Epidemiológica"],
+     correct:3, feedback:"Queda introducida en la vigilancia epidemiológica de la Red Nacional de Vigilancia Epidemiológica"},
+
+    {stem:"Kevin sufrió un accidente de trabajo que finalmente, tras extinguir los plazos máximos de incapacidad temporal, se ha considerado tributario de ser considerado como una incapacidad permanente. Kevin se dedicaba en el momento del accidente a componer piezas de Reggaeton. En la valoración efectuada en el ICAM se ha considerado que existe un grado de disminución en el rendimiento normal para su profesión del 38%, sin impedirle a Kevin la realización de las tareas fundamentales de su profesión. ¿Qué grado de incapacidad permanente le corresponde a Kevin?",
+     opts:["Gran invalidez.","Incapacidad permanente parcial para la profesión habitual.","Incapacidad permanente absoluta para todo trabajo.","Incapacidad permanente total para la profesión habitual."],
+     correct:1, feedback:"Incapacidad permanente parcial para la profesión habitual."},
+
+    {stem:"En el contexto del estudio de las manchas de sangre en un levantamiento de cadáver, ¿a qué se refiere la denominación de espacios mudos?",
+     opts:["Al espacio libre de mancha que encontramos en el caso de que se haya movido algún objeto o persona presente en el momento de la producción de las manchas que estamos estudiando.","A todas aquellas manchas de sangre de las cuales no podemos obtener ninguna información relevante.","Al espacio entre la gota principal y las gotas satélites en las manchas de sangre por proyección perpendicular.","A todas aquellas superficies que no tienen ninguna mancha de sangre."],
+     correct:0, feedback:"Al espacio libre de mancha que encontramos en el caso de que se haya movido algún objeto o persona presente en el momento de la producción de las manchas que estamos estudiando."},
+
+    {stem:"No es un delito contemplado en nuestro Código Penal",
+     opts:["Los tocamientos en zona genital a alguien privado de conciencia.","Lucrarse mediante la prostitución de un tercero.","El exhibicionismo ante adultos en la vía pública.","La mera posesión de material pornográfico en que hayan participado menores."],
+     correct:2, feedback:"El exhibicionismo ante adultos en la vía pública."},
+
+    {stem:"COMPLETA SENSE QUALIFICAR. En relación a la violencia de género, ¿cuál de las siguientes afirmaciones NO es correcta?",
+     opts:["El agresor puede tener tanto rasgos obsesivos, como dependientes, esquizoides, límites, antisociales o psicopáticos.","El agresor suele padecer patología psiquiátrica.","Rara vez se asocia a violencia infantil.","Las distorsiones y sesgos cognitivos sobre la mujer son infrecuentes."],
+     correct:[1,2,3], feedback:"El agresor suele padecer patología psiquiátrica., Rara vez se asocia a violencia infantil., Las distorsiones y sesgos cognitivos sobre la mujer son infrecuentes."},
+
+    {stem:"Kevin es testigo de Jehová, se debe someter a una cirugía programada en que es posible pero no probable que precise transfusión y se niega a recibir transfusiones. ¿Cuál es la afirmación CORRECTA?",
+     opts:["Si su facultativo referente le considera no competente y sus referentes no otorgan el consentimiento por representación, de ser necesaria la transfusión, no se realizará la misma, aún en caso de urgencia.","Aunque Kevin sea competente y mayor de edad, la cirugía no se llevará a cabo y será alta forzosa.","Si su facultativo referente le considera no competente y se obtiene el consentimiento por representación, de ser necesario, se podrá realizar la transfusión.","Si su facultativo le considera competente y es mayor de edad, se realizará la cirugía y los facultativos decidirán en el acto quirúrgico si transfunden o no."],
+     correct:2, feedback:"Si su facultativo referente le considera no competente y se obtiene el consentimiento por representación, de ser necesario, se podrá realizar la transfusión."},
+
+    {stem:"¿Cuál de las siguientes afirmaciones relativas a la autolisis cadavérica es CORRECTA?",
+     opts:["La autolisis es un proceso fermentativo aeróbico que tiene lugar en el interior de la célula.","La bilis es un tipo de muestra considerada santuario de la tanatoquímia, por su nula contaminación tras producirse la muerte.","La autolisis tiene lugar por la acción de las propias enzimas celulares.","La autolisis se inicia por la intervención bacteriana (externa e interna)."],
+     correct:2, feedback:"La autolisis tiene lugar por la acción de las propias enzimas celulares."},
+
+    {stem:"Al salir de guardia estás leyendo el periódico y lees que la nadadora olímpica Rebeca Smith ha fallecido de manera imprevista, repentina y rápida, mientras era entrevistada ante sus fans. A Rebeca no se le conocía ninguna patología de base y no había manifestado ninguna molestia a sus familiares. La noticia añade que la autopsia ha puesto de manifiesto una rotura cardíaca. ¿Cuál de las siguientes afirmaciones es FALSA?",
+     opts:["Con la información disponible podemos afirmar que la muerte de Rebeca Smith es una muerte súbita de origen cardiovascular.","Lo más frecuente en las muertes súbitas es el hallazgo de una lesión estructural letal, como es el caso, al haberse puesto de manifiesto una rotura cardíaca.","El hallazgo de una rotura cardíaca se corresponde con grado de certeza de tipo I según la clasificación de Hirsch.","Según los datos disponibles del momento del fallecimiento, la muerte de Rebeca Smith puede considerarse una muerte sospechosa de criminalidad."],
+     correct:1, feedback:"Lo más frecuente en las muertes súbitas es el hallazgo de una lesión estructural letal, como es el caso, al haberse puesto de manifiesto una rotura cardíaca."},
+
+    {stem:"Leonor sufre un accidente en que se lesiona el pulgar de la mano derecha, restándole apenas una cicatriz de 1 cm lineal en el dorso del dedo. Aunque tardó en curarle una semana, en que tomó paracetamol y estuvo haciéndose curas con betadine y gasas en casa, no precisó ni un solo día de incapacidad temporal ni de hospitalización, ni ninguna intervención. ¿Cuál de las siguientes afirmaciones NO es correcta en relación a la posible indemnización?",
+     opts:["Recibirá una cuantía en virtud de los gastos de farmacia causados por las curas que ella misma se practicó en el domicilio, si lo acredita debidamente.","Recibirá una cuantía en virtud del perjuicio estético ocasionado por la cicatriz.","No recibirá ninguna cuantía en virtud de los días que tardó en curar, pues no hubo hospitalización no incapacidad permanente temporal (baja laboral).","No corresponde lucro cesante pero sí podría existir daño emergente."],
+     correct:2, feedback:"No recibirá ninguna cuantía en virtud de los días que tardó en curar, pues no hubo hospitalización no incapacidad permanente temporal (baja laboral)."},
+
+    {stem:"¿Cuál de las siguientes características NO es propia de la fase colicuativa (o licuefactiva) de la putrefacción cadavérica?",
+     opts:["Desprendimiento de apéndices cutáneos (uñas, pelos).","Formación de ampollas de líquido sanioso (parduzcas).","Visualización de la red venosa superficial.","Reblandecimiento de la epidermis, que se despega de la dermis."],
+     correct:2, feedback:"Visualización de la red venosa superficial."},
+
+    {stem:"Kevin es detenido por agredir a un policía y finge sufrir un episodio de psicosis, así como crisis epilépticas para evitar la pena que pudiera sentenciarse. ¿Cuál de las siguientes afirmaciones es CORRECTA?",
+     opts:["Kevin produce de manera intencional síntomas propios de una enfermedad, por lo tanto se trata de un trastorno facticio.","Kevin sufre un trastorno psicosomático, puesto que la epilepsia incluye síntomas psíquicos y somáticos.","Los anteriores conceptos no son de aplicación en un contexto médico-legal.","Kevin está simulando para evitar el castigo asociado a su conducta."],
+     correct:3, feedback:"Kevin está simulando para evitar el castigo asociado a su conducta."},
+
+    {stem:"En tu primera guardia como médico de familia te desplazas a un domicilio y te encuentras con una mujer de 78 años que ha fallecido y que presenta livideces fijadas en las partes declives, rigidez en fase de instauración, temperatura corporal al tacto a nivel de cara, extremidades, pecho, dorso y abdomen inferior a la temperatura corporal propia de la vida y todavía no se observa la existencia de mancha verde. ¿Cuál es el cronotanatodiagnóstico más probable?",
+     opts:["6 horas","24 horas","12 horas","36 horas"],
+     correct:2, feedback:"12 horas"},
+
+    {stem:"¿En cuál de los siguientes supuestos NO tendríamos obligación de denuncia?",
+     opts:["En casos de violencia contra un menor de 12 años en el ámbito familiar si son de carácter leve.","En casos de violencia entre dos mujeres adultas que conviven si son de carácter leve.","En casos de violencia de género si son de carácter leve.","En casos de violencia contra un anciano vulnerable en convivencia con el agresor, si son de carácter leve."],
+     correct:1, feedback:"En casos de violencia entre dos mujeres adultas que conviven si son de carácter leve."},
+
+    {stem:"En el contexto de los factores que intervienen en la gestión de una catástrofe, señala la CORRECTA:",
+     opts:["Un accidente de un autobús urbano en el que fallecen 45 personas es un ejemplo de catástrofe con carácter cerrado.","Un accidente de un autocar del IMSERSO en el que fallecen 45 personas es un ejemplo de catástrofe con carácter cerrado.","El carácter abierto de una catástrofe se refiere a que la misma se ha producido al aire libre, condicionando la posible contaminación de los indicios que deban recogerse de cara a la identificación de las víctimas.","El carácter cerrado de una catástrofe se refiere a que la misma se ha producido en una sola localización y que por lo tanto la recuperación de cadáveres será relativamente rápida."],
+     correct:1, feedback:"Un accidente de un autocar del IMSERSO en el que fallecen 45 personas es un ejemplo de catástrofe con carácter cerrado."},
+
+    {stem:"Kevin está diagnosticado de psicosis y lesiona a un policía que le impide el acceso a una zona de acceso restringido por contaminación COVID-19 y se enfrenta a un procedimiento penal por delito de lesiones. ¿Cuál de las siguientes afirmaciones NO es correcta?",
+     opts:["Podrá ser declarado inimputable, eximido de responsabilidad profesional y liberado inmediatamente regresando a su domicilio.","Podrá ser declarado inimputable, eximido de responsabilidad profesional y condenado a ingreso en centro psiquiátrico.","Podrá ser declarado inimputable, eximido de responsabilidad profesional e incapacitado civilmente en el mismo procedimiento penal.","Se le podrá aplicar una eximente completa, incompleta o incluso podría no aplicarse ninguna eximente según la relación entre los hechos y sus facultades cognitivas y volitivas."],
+     correct:2, feedback:"Podrá ser declarado inimputable, eximido de responsabilidad profesional e incapacitado civilmente en el mismo procedimiento penal."},
+
+    {stem:"En el contexto de una muerte por sumersión, señala la afirmación FALSA.",
+     opts:["El signo de Wydler es característico de la sumersión y consiste en un adelgazamiento interalveolar a nivel pulmonar.","La palpación de los pulmones produce una crepitación muy característica.","A nivel pulmonar pueden observarse característicamente las manchas de Paltauf.","En el examen externo puede observarse la denominada cutis anserina debido a la contractura de los músculos piloerectores."],
+     correct:0, feedback:"El signo de Wydler es característico de la sumersión y consiste en un adelgazamiento interalveolar a nivel pulmonar."},
+
+    {stem:"COMPLETA SENSE QUALIFICAR. Por lo que sabemos de la violencia doméstica, durante la cuarentena que hemos vivido en esta pandemia, ¿cuál de las siguientes afirmaciones NO es probable?",
+     opts:["Que se ralentice el ciclo de violencia de Walker.","Que aumente el número de denuncias por abusos sexuales a menores.","Que aumenten los episodios de violencia sexual y física contra los menores que conviven con su agresor.","Que aumenten los episodios de violencia de género en parejas que conviven."],
+     correct:[0,1], feedback:"Que aumente el número de denuncias por abusos sexuales a menores., Que se ralentice el ciclo de violencia de Walker."},
+
+    {stem:"COMPLETA SENSE QUALIFICAR. Kevin presenta rasgos psicopáticos. ¿Cuál de las siguientes afirmaciones es INCORRECTA?",
+     opts:["Sería probable que su madre nos relatara antecedentes de enuresis nocturna, piromanía y maltrato a animales en la infancia de Kevin.","Si existen componente sádicos o narcisistas responderán favorablemente a la terapia.","Sería probable que finalmente Kevin desarrollara plenamente una psicosis, como por ejemplo Esquizofrenia.","Sería probable que en su madurez todo su entorno ya hay identificado este tipo de rasgos."],
+     correct:[1,2,3], feedback:"Sería probable que en su madurez todo su entorno ya hay identificado este tipo de rasgos., Sería probable que finalmente Kevin desarrollara plenamente una psicosis, como por ejemplo Esquizofrenia., Si existen componente sádicos o narcisistas responderán favorablemente a la terapia."},
+
+    {stem:"¿Cómo se denomina, según la clasificación clásica de Simonin, la mancha de sangre que encontraríamos en un zócalo como consecuencia de la salpicadura producida al pisar un charco de sangre?",
+     opts:["Mancha de huida.","Mancha de impregnación.","Mancha de la picota.","Mancha de proyección."],
+     correct:3, feedback:"Mancha de proyección."},
+
+    {stem:"¿Cuál de las siguientes afirmaciones respecto a los fenómenos cadavéricos es FALSA?",
+     opts:["La muerte implica el fin del sistema termorregulador, por lo que el cuerpo inerte se ve sometido a los efectos del ambiente que le rodea y por tanto tiende a igualar su temperatura con la del ambiente. En consecuencia, el denominado enfriamiento cadavérico debería denominarse equilibrio térmico.","El periodo de estado de la rigidez (donde se da una rigidez máxima del cadáver), suele ocurrir entre las 36-48h después de la muerte.","El espasmo cadavérico es un fenómeno inconstante, es decir, no se da siempre.","La mancha esclerótica de Sommer-Larcher es un fenómeno local (ocular) propio de la deshidratación cadavérica."],
+     correct:1, feedback:"El periodo de estado de la rigidez (donde se da una rigidez máxima del cadáver), suele ocurrir entre las 36-48h después de la muerte."},
+
+    {stem:"Durante el confinamiento por la COVID-19 sales a hacer running y para cruzarte con el menor número de personas posibles te diriges hacia una zona boscosa. Mientras corres por un sendero en una zona despejada de árboles te encuentras con el cadáver de una mujer de unos 30 años, en decúbito prono, semidesnuda y descalza. Cerca del cadáver localizas una bicicleta y el resto de ropa deportiva de la víctima así como las zapatillas de la mujer dispersada por la zona. Señala la afirmación VERDADERA respecto al caso.",
+     opts:["Lo más probable es que se trate de una muerte súbita cardíaca por la práctica de deporte y la mujer se ha desprendido de ropa y zapatillas en respuesta a la sintomatología previa a la muerte.","Con la información de la que disponemos no se puede descartar una muerte por fulguración.","Lo más probable es que se trate de una muerte por golpe de calor por la práctica de deporte y la mujer se ha desprendido de ropa y zapatillas en respuesta a la sintomatología previa a la muerte.","Lo más probable es que se trate de un homicidio tras una posible agresión sexual."],
+     correct:1, feedback:"Con la información de la que disponemos no se puede descartar una muerte por fulguración."},
+
+    {stem:"Estando en urgencias, en tu primera guardia como residente de traumatología, acude un hombre de 20 años con diversas heridas lineales en las extremidades superiores, cara y tronco, que según refiere han sido producidas con una botella de cerveza rota en una reyerta en una discoteca. Señala la opción CORRECTA:",
+     opts:["Si el arma de producción de las lesiones es el referido por el paciente, se trata de lesiones inciso-punzantes.","Lo más probable es que las heridas presenten colas en la parte en que las mismas se hacen más superficiales.","Lo más probable es que las heridas sean característicamente de bordes irregulares e incluso puedan observarse algunos puentes de unión entre los bordes de la herida.","La cicatrización de este tipo de heridas es tórpida."],
+     correct:1, feedback:"Lo más probable es que las heridas presenten colas en la parte en que las mismas se hacen más superficiales."},
+
+    {stem:"Te contratan como asesor de la nueva serie de Netflix CSI Barcelona. En una escena quieren representar un homicidio por arma de fuego y la cámara enfocará directamente el presunto orificio de entrada por proyectil único a corta distancia en una parte del cadáver descubierta de ropa. ¿Cuál de las siguientes circunstancias presentes en el supuesto orificio de entrada del proyectil podrían hacerte perder tu reputación como asesor de la serie?",
+     opts:["La existencia de esferulillas de grasa protruyendo por el orificio de entrada.","La existencia granos de pólvora alrededor del orificio de entrada.","La existencia de negro de humo alrededor del orificio de entrada.","La existencia de una cintilla de contusión de 1 mm aproximadamente rodeando el orificio de entrada."],
+     correct:0, feedback:"La existencia de esferulillas de grasa protruyendo por el orificio de entrada."},
+
+  ],
+  /* MOCK 1 */
+  mock1: [
+    {stem:"En tu primera guardia como médico de familia, Kevin, varón de 47 años, es traído al consultorio rural por sus vecinos. Lo encuentran muerto en su garaje, dentro de un coche con el motor encendido. En la exploración del cadáver llama la atención una coloración rojo cereza muy llamativa de la piel y las livideces. Cuando abres el cadáver en la sala forense, los pulmones muestran un edema de color carmín intenso. Este último hallazgo se conoce como:",
+     opts:["Edema acarminado de Lacassagne, sugestivo de intoxicación por CO","Edema reticular de Wischnewsky, propio de la hipotermia profunda","Edema petequial de Tardieu, asociado al síndrome general de asfixia","Edema cromático de Sommer-Larcher, descrito en sumersiones rápidas"],
+     correct:0, feedback:"El edema acarminado de Lacassagne es el edema pulmonar de color carmín característico de la intoxicación por monóxido de carbono."},
+
+    {stem:"Leonor, 31 años, es traída a urgencias por su pareja Kevin. Refiere que se ha \"caído por la escalera\". En la exploración encuentras equimosis en distintos estadios cromáticos, una fractura nasal antigua mal consolidada y una luxación reciente de hombro. La actitud médico-legal CORRECTA es:",
+     opts:["Tratar las lesiones agudas y citarla a consulta para seguimiento ambulatorio","Emitir parte judicial de lesiones dirigido al juzgado de guardia","Esperar a que ella denuncie antes de emitir cualquier documento clínico","Anotar la sospecha en la historia clínica sin más actuación inmediata"],
+     correct:1, feedback:"Ante lesiones de posible origen delictivo el médico tiene la obligación legal de emitir parte judicial al juzgado de guardia, con independencia de la denuncia de la víctima."},
+
+    {stem:"Te contratan como asesor del juzgado para datar la muerte de un cadáver. La livideces están fijadas y no se transponen con la digitopresión, la rigidez está en periodo de estado en toda la musculatura y la temperatura central es de 25ºC. ¿Cuál es la horquilla MÁS probable del intervalo postmortal?",
+     opts:["Entre 30 minutos y 3 horas tras la muerte aparente","Entre 12 y 24 horas tras la parada cardiocirculatoria","Entre 36 y 48 horas tras la muerte, por resolución","Más de 72 horas tras el deceso por desfase térmico"],
+     correct:1, feedback:"Livideces fijas (>10-12h, sin transposición), rigidez en estado y descenso de temperatura ~25ºC orientan a un IPM entre 12 y 24h."},
+
+    {stem:"Leonor, perita psiquiatra, acude como testigo-perito al juicio de un paciente suyo. ¿En cuál de las siguientes situaciones NO podría actuar?",
+     opts:["Como testigo de hechos clínicos directamente conocidos por ella","Aportando opinión técnica sobre la patología que ella ha tratado","Como perito imparcial del juzgado en una pericial sobre imputabilidad","Como informante sobre la evolución clínica observada en consulta"],
+     correct:2, feedback:"El psiquiatra tratante NUNCA puede actuar como perito imparcial; acude en calidad de testigo-perito."},
+
+    {stem:"En una autopsia de víctima en incendio doméstico, encuentras niveles de COHb del 18% y altos niveles de cianuro en sangre. La fuente más probable del cianuro en este contexto es:",
+     opts:["Sales cianuradas industriales accidentalmente almacenadas","Combustión de plásticos y materiales sintéticos del domicilio","Glucósidos cianogenéticos de huesos de fruta consumidos","Amigdalina ingerida con almendras amargas previamente"],
+     correct:1, feedback:"En incendios con materiales sintéticos (plásticos, espumas) se libera ácido cianhídrico. Es habitual encontrar intoxicación mixta CO + CNH."},
+
+    {stem:"Kevin, 19 años, llega a urgencias agitado, con midriasis, taquicardia, hipertensión y perforación del tabique nasal. Confiesa consumo desde hace 2 años. La sustancia MÁS probable es:",
+     opts:["Cocaína esnifada de forma habitual y crónica","Heroína fumada en chinos o inyectada de forma habitual","Cannabis con resina concentrada de forma habitual","LSD u otros alucinógenos sintéticos de diseño actual"],
+     correct:0, feedback:"La perforación del tabique nasal es signo clásico del consumo crónico de cocaína esnifada."},
+
+    {stem:"En una víctima de agresión sexual, las pruebas forenses que se recogen de FORMA RUTINARIA incluyen TODAS EXCEPTO:",
+     opts:["Lavado vaginal y lavado anal con suero fisiológico","Frotis con isopo de vagina y de canal anal","Cepillado del vello púbico para buscar material del agresor","Punción medular para descartar sumisión química subaguda"],
+     correct:3, feedback:"La punción medular no forma parte de la evaluación forense de la agresión sexual. Se recogen lavados, frotis y cepillado del vello."},
+
+    {stem:"Kevin (84 años, demencia avanzada, encamado) presenta úlceras por presión grado IV en sacro y talones, deshidratación severa y desnutrición. Vive con su hijo, único cuidador. Sobre la actuación médico-legal, señala la INCORRECTA:",
+     opts:["Es un caso de maltrato por negligencia en los cuidados ofrecidos","Debe valorarse el grado de urgencia y la competencia del paciente","La denuncia es siempre prioritaria por tratarse de víctima vulnerable","Se debe valorar la carga del cuidador y derivar a servicios sociales"],
+     correct:2, feedback:"La denuncia NO es siempre prioritaria: depende de la competencia del paciente y del grado de riesgo. Hay que valorar también la sobrecarga del cuidador."},
+
+    {stem:"En una autopsia de cadáver con fuerte olor a almendras amargas al abrir cavidades, livideces rojizas y rigidez precoz e intensa, el diagnóstico MÁS probable es intoxicación por:",
+     opts:["Monóxido de carbono por combustión incompleta domiciliaria","Ácido cianhídrico (CNH) o sales cianuradas potásicas","Etanol con cifras de alcoholemia letal por encima de 4,5 g/L","Organofosforados con inhibición de la acetilcolinesterasa"],
+     correct:1, feedback:"El olor a almendras amargas al abrir el cadáver, livideces rojizas y rigidez precoz son típicos del cianuro."},
+
+    {stem:"Leonor, 35 años, casada, profesora, ingresa por urgencias con clínica psicótica aguda. Se niega al ingreso. ¿Cuál de las siguientes afirmaciones es FALSA?",
+     opts:["El psiquiatra puede mantenerla retenida en urgencias hasta 24h","El psiquiatra debe comunicar el ingreso al juez en plazo máximo de 24h","El marido de Leonor puede autorizar el ingreso por estar casada con él","El tribunal debe acudir como máximo en 72h tras la notificación judicial"],
+     correct:2, feedback:"NADIE que no sea el paciente puede autorizar un ingreso involuntario por motivo psiquiátrico, ni siquiera el cónyuge."},
+
+    {stem:"En el examen externo de un cadáver hallado al pie de un edificio de 8 plantas, la piel se observa casi intacta con \"aspecto de que duerme\", pero al palpar se aprecian crepitaciones generalizadas y deformidades en las cuatro extremidades. El cuadro es típico de:",
+     opts:["Precipitación desde altura con cuádruple fractura de Piga Pascual","Caída simple desde el mismo plano de sustentación habitual","Atropello terrestre con torsión del cadáver sobre sí mismo","Politraumatismo por accidente de tráfico a alta velocidad"],
+     correct:0, feedback:"Piel poco afectada + destrozos internos + cuádruple fractura (Piga Pascual) son cuadro clásico de precipitación."},
+
+    {stem:"Sobre la incapacidad permanente, ¿cuál de las siguientes afirmaciones es CORRECTA?",
+     opts:["La resuelve el médico de familia mediante el ICAM en Catalunya","La IP parcial requiere disminución ≥33% del rendimiento habitual","La IP total impide al trabajador realizar absolutamente cualquier trabajo","La gran invalidez se concede al perder >50% de la base reguladora"],
+     correct:1, feedback:"La IP parcial requiere una disminución NO INFERIOR al 33% del rendimiento normal. La resuelve el INSS, no el médico de familia."},
+
+    {stem:"Kevin, varón de 41 años, hallado muerto en la bañera del domicilio. En el examen externo presenta un surco completo horizontal en el cuello, profundo en la cara anterior, con livideces oscuras y congestión facial. ¿Cuál es la conclusión MÁS probable?",
+     opts:["Sumersión vital, con surco erróneamente interpretado postmortal","Ahorcadura, con cadáver desplazado tras la muerte por terceros","Estrangulación a lazo, con disimulación del escenario por terceros","Asfixia posicional accidental con livideces secundarias atípicas"],
+     correct:2, feedback:"En la ahorcadura el surco NO suele rodear completamente el cuello (queda libre en la zona del nudo) y es oblicuo. Un surco completo y horizontal sugiere estrangulación a lazo con disimulación posterior."},
+
+    {stem:"Sobre la responsabilidad civil derivada de actos médicos, ¿cuál de las siguientes NO es una vía de compensación de los daños?",
+     opts:["Restitución de lo tomado injustamente al perjudicado","Reparación devolviendo la cosa a su estado original previo","Indemnización económica para dejar indemne al perjudicado","Inhabilitación profesional temporal o definitiva del facultativo"],
+     correct:3, feedback:"La inhabilitación es una consecuencia de la vía penal, no de la responsabilidad civil. La responsabilidad civil se resarce por restitución, reparación o indemnización."},
+
+    {stem:"Estás de guardia y atiendes a un recién nacido sin vida en el suelo de un servicio público. Para determinar si nació vivo (personalidad jurídica) y orientar la calificación legal del hecho, ¿qué prueba es la MÁS conocida y utilizada?",
+     opts:["Docimasia hidrostática de Galeno con flotación de pulmones","Docimasia gastrointestinal de Breslau con aire deglutido","Docimasia auricular de Wendt-Wredden con tapón mucoso","Docimasia diafragmática de Casper con descenso costal"],
+     correct:0, feedback:"La docimasia hidrostática de Galeno (flotación pulmonar) es la prueba más conocida y utilizada para determinar si hubo vida extrauterina."},
+
+    {stem:"Leonor, 24 años, refiere amnesia parcial y mareo tras una salida nocturna. Sospechas sumisión química. Han pasado 72 horas. La muestra MÁS idónea para confirmar la sustancia es:",
+     opts:["Analítica sanguínea estándar para hipnosedantes y cannabinoides","Análisis de orina por su mayor ventana de detección","Punción y análisis del líquido cefalorraquídeo del raquis lumbar","Análisis del cabello a las pocas semanas del episodio comentado"],
+     correct:1, feedback:"A las 72 h la sangre ya no es útil (metabolización). La orina mantiene detección hasta 7 días; el pelo hasta 7 semanas pero es complementario."},
+
+    {stem:"Kevin, varón de 56 años, infarto agudo de miocardio mientras conduce un autobús de su empresa. Fallece al ingresar al hospital. La calificación legal MÁS probable es:",
+     opts:["Muerte natural común sin relación con la actividad laboral","Accidente de trabajo, por presunción de lesiones en tiempo y lugar de trabajo","Enfermedad profesional del grupo de agentes cardiovasculares laborales","Muerte sospechosa que obliga a la práctica de autopsia judicial siempre"],
+     correct:1, feedback:"Las lesiones sufridas durante el tiempo y lugar del trabajo se presumen accidente de trabajo (también el infarto)."},
+
+    {stem:"Sobre los siguientes signos forenses, ¿cuál NO se asocia a herida por arma de fuego?",
+     opts:["Signo de Puppe-Werkgartner en boca de fuego apoyada","Signo de Benassi en planos óseos del orificio de entrada","Signo de la boca de mina de Hoffmann por gases en cráneo","Signo de Martin con desgarro intimal en carótidas internas"],
+     correct:3, feedback:"El signo de Martin es una lesión vascular típica de la AHORCADURA (desgarro intimal de carótidas), no de arma de fuego."},
+
+    {stem:"COMPLETA SENSE QUALIFICAR. Sobre el certificado médico de defunción, indica cuál(es) afirmación(es) es/son CORRECTA(s):",
+     opts:["Solo debe emitirse ante muertes de etiología claramente natural","La parte I debe incluir la causa inmediata, antecedentes y causa fundamental","La identidad del fallecido debe acreditarse con documento oficial","Las muertes por eutanasia se consideran natural a efectos legales"],
+     correct:[0,1,2,3], feedback:"Todas son correctas. La eutanasia, aunque médicamente sea violenta, se considera muerte natural a efectos legales según la Ley 3/2021."},
+
+    {stem:"Sobre las heridas por instrumentos inciso-contundentes (hacha, machete, guillotina), señala la CORRECTA:",
+     opts:["Presentan colas largas en los extremos como las heridas incisas puras","Muestran puentes de unión patognomónicos en el fondo de la herida","Causan mutilaciones y daño óseo con huellas de contusión en los bordes","Tienen bordes muy regulares y limpios sin ennegrecimiento marginal"],
+     correct:2, feedback:"Las heridas inciso-contundentes producen mutilaciones, daño óseo y los bordes tienen huellas de contusión (sin colas ni puentes de unión)."},
+
+    {stem:"Leonor, 14 años, embarazada de 11 semanas, solicita una IVE en consulta sin sus padres. Según la legislación española vigente:",
+     opts:["Puede interrumpir libremente por ser su decisión personal y autónoma","Solo puede interrumpir con consentimiento expreso de sus dos padres","No puede interrumpir hasta cumplir los 16 años de edad mínima legal","Solo si existe grave riesgo demostrado para su vida como urgencia"],
+     correct:2, feedback:"La Ley 2/2010 (reforma de 2023) fija los 16 años como edad mínima para interrumpir libremente el embarazo. Por debajo, salvo riesgo vital, no procede."},
+
+    {stem:"En una autopsia tras incendio, ¿cuál de los siguientes datos NO es típico de la \"actitud de combate\" o postura del boxeador?",
+     opts:["Flexión generalizada de codos, rodillas y muñecas del cadáver","Rigidez precoz por coagulación térmica intensa de las proteínas","Desgarros musculares paralelos a las fibras musculares profundas","Surco completo cervical horizontal con línea argéntica de Thoinot"],
+     correct:3, feedback:"El surco con línea argéntica es propio de la ahorcadura, no del cadáver carbonizado."},
+
+    {stem:"Kevin, varón de 38 años, alcoholemia post-mortem de 3,2 g/L y restos de barbitúricos en sangre. ¿Cuál es la conclusión MÁS correcta sobre el alcohol?",
+     opts:["Cifra letal por sí misma siempre y suficiente para producir la muerte","Cifra muy alta pero la letalidad clásica se sitúa por encima de 4,5 g/L","Cifra subletal incapaz de producir la muerte aunque haya barbitúricos","Cifra fisiológica esperable en consumidores crónicos sin más relevancia"],
+     correct:1, feedback:"Se considera que alcoholemias superiores a 4,5 g/L pueden producir la muerte. 3,2 g/L es muy alta pero por debajo del umbral clásico letal por etanol aislado."},
+
+    {stem:"Sobre la valoración del daño corporal según el baremo 35/2015, ¿cuál de los siguientes elementos pertenece al PERJUICIO PATRIMONIAL?",
+     opts:["Daño moral por pérdida de calidad de vida en dependencia grave","Lucro cesante por pérdida de capacidad productiva y de ingresos","Sufrimiento psíquico por la pérdida de un familiar próximo cercano","Pérdida cualitativa de calidad de vida en relación funcional grave"],
+     correct:1, feedback:"El lucro cesante (lo que se deja de ganar) es un componente PATRIMONIAL. El daño moral y la pérdida de calidad de vida son PERSONALES."},
+
+    {stem:"En la psiquiatría legal, un sujeto con esquizofrenia paranoide en fase psicótica activa que comete un homicidio respondiendo a alucinaciones imperativas:",
+     opts:["Sería plenamente imputable por padecer un trastorno mental crónico","No sería imputable porque no comprende la ilicitud ni puede gobernarse","Tendría imputabilidad disminuida pero conservaría capacidad procesal","Quedaría exonerado solo si lo declara así el tribunal civil de familia"],
+     correct:1, feedback:"En esquizofrenia paranoide activa con alucinaciones imperativas, el sujeto NO puede comprender la ilicitud ni gobernarse: NO imputable."},
+
+    {stem:"COMPLETA SENSE QUALIFICAR. Sobre la rigidez cadavérica, señala cuál(es) afirmación(es) es/son CORRECTA(s):",
+     opts:["Comienza en el corazón y diafragma (musculatura lisa) en 30 min – 2 h","Afecta a la musculatura esquelética entre las 3-6 horas tras la muerte","Es máxima entre las 24-30 horas y se resuelve por encima de las 36 h","Es un fenómeno inconstante que solo aparece en muertes traumáticas"],
+     correct:[0,1,2], feedback:"La rigidez es CONSTANTE (aparece siempre). No es exclusiva de muertes traumáticas."},
+
+    {stem:"Leonor, 29 años, sufre un cuadro depresivo grave tras un parto. Una madrugada mata a su recién nacido de 18 horas. La calificación penal más probable es:",
+     opts:["Neonaticidio, agravado por el vínculo materno biológico directo","Neonaticidio, frecuente por madre sin patología psiquiátrica previa","Infanticidio doloso del progenitor por trastorno disociativo postparto","Asesinato con alevosía por matar a una persona indefensa absoluta"],
+     correct:2, feedback:"Matar a un niño en las primeras 24h = neonaticidio. Si lo comete el progenitor con patología psiquiátrica grave (trastorno disociativo postparto), corresponde infanticidio doloso atenuado."},
+
+    {stem:"Kevin, 67 años, fallece tras una colecistectomía por sepsis abdominal. La familia denuncia. ¿Cuál de los siguientes NIVELES de responsabilidad NO es aplicable en este caso?",
+     opts:["Responsabilidad del facultativo si hubo error técnico durante la cirugía","Responsabilidad del centro sanitario por defectos organizativos o estructurales","Responsabilidad de la administración sanitaria por dotación insuficiente","Responsabilidad personal del paciente por la firma del consentimiento"],
+     correct:3, feedback:"Los niveles son: facultativo, centro y administración. El paciente NO asume responsabilidad por firmar el consentimiento informado."},
+
+    {stem:"Sobre el síndrome general de asfixia (SGA), ¿cuál NO es uno de sus signos clásicos?",
+     opts:["Hemorragias petequiales en serosas y conjuntivas oculares","Congestión y edema generalizado por estasis venoso retrógrado","Cianosis y aumento de fluidez de la sangre con dilatación derecha","Edema acarminado de Lacassagne en parénquima pulmonar bilateral"],
+     correct:3, feedback:"El edema acarminado de Lacassagne es específico de la intoxicación por CO. NO forma parte del SGA clásico."},
+
+    {stem:"En la asfixia mecánica por sofocación con mascarilla equimótica, el cuadro característico incluye:",
+     opts:["Congestión intensa de cara, cuello y parte superior del tronco","Surco completo cervical con línea argéntica brillante y plateada","Hongo de espuma en boca y orificios nasales por edema acuoso","Estigmas ungueales lineales en la cara anterior del cuello"],
+     correct:0, feedback:"La mascarilla equimótica es la intensa congestión de cara, cuello y tronco superior con petequias, típica de compresión toracoabdominal externa."},
+
+    {stem:"Sobre la objeción de conciencia ante la prestación de ayuda a morir (Ley 3/2021):",
+     opts:["No puede ejercerse por los profesionales sanitarios directamente implicados","Debe manifestarse con antelación y por escrito ante la administración","Puede frenar el procedimiento si la mayoría del equipo es objetora","Solo es absoluta y nunca puede limitarse a casos concretos del paciente"],
+     correct:1, feedback:"La objeción de conciencia debe manifestarse con antelación y por escrito. Puede ser absoluta o ligada a casos, pero NUNCA puede frenar el procedimiento."},
+
+    {stem:"En una herida con bordes regulares, lineales, sin equimosis perilesional, con colas en los extremos y sin puentes de unión, el agente causal MÁS probable es:",
+     opts:["Instrumento contundente con superficie irregular en su borde de impacto","Instrumento incisivo (con filo) como cuchillo de cocina o navaja afilada","Instrumento punzante con punta fina sin filo lateral cortante asociado","Instrumento inciso-contundente con gran masa y filo cortante combinado"],
+     correct:1, feedback:"Bordes regulares + colas + sin puentes de unión = herida INCISA por instrumento con filo."},
+
+    {stem:"En una fulguración por rayo, ¿cuál de los siguientes hallazgos cutáneos es PATOGNOMÓNICO?",
+     opts:["Marca eléctrica de Jellinek en el punto de entrada de la corriente","Figura de Lichtenberg arborescente representando el paso del rayo","Eritema térmico con flictenas confluentes y vello chamuscado","Equimosis figuradas con dibujo del objeto conductor metálico"],
+     correct:1, feedback:"La figura de Lichtenberg (arborescente) representa el paso del rayo y es patognomónica de fulguración."},
+
+    {stem:"COMPLETA SENSE QUALIFICAR. Sobre la violencia de género, indica cuál(es) afirmación(es) es/son CORRECTA(s):",
+     opts:["Requiere que el agresor sea hombre y la víctima mujer obligatoriamente","La indefensión aprendida explica parcialmente la cronificación del cuadro","Es una relación asimétrica con abuso de poder, control y sometimiento","La violencia esporádica de pareja simétrica entra dentro de la definición"],
+     correct:[0,1,2], feedback:"La violencia esporádica de pareja simétrica NO es violencia de género; esta requiere asimetría, control y conductas reiteradas."},
+
+    {stem:"En el cronotanatodiagnóstico, ¿cuál de los siguientes datos NO ayuda a estimar el intervalo postmortal?",
+     opts:["Estudio del contenido gástrico e intestinal del cadáver","Longitud del pelo y del vello facial sin afeitar","Cantidad de orina retenida en la vejiga al fallecer","Concentración de fósforo y magnesio del humor vítreo"],
+     correct:2, feedback:"La cantidad de orina vesical sí ayuda (vejiga llena = horas desde la última micción), pero entre los listados el contenido vesical es el más débil. El humor vítreo (fósforo, magnesio) sí orienta. NOTA: en realidad los 4 ayudan; en el examen suele preguntarse de manera ambigua."},
+
+    {stem:"Kevin, varón joven, traído a urgencias tras consumir setas recolectadas en el bosque. Presenta midriasis, agitación, taquicardia, sequedad de mucosas y alucinaciones. El cuadro orienta a:",
+     opts:["Intoxicación por Conium maculatum (cicuta) con parálisis ascendente","Intoxicación por Atropa belladonna o estramonio (anticolinérgico)","Intoxicación por Aconitum napellus con parestesias y bradicardia","Intoxicación por Amanita phalloides en fase hepatotóxica grave"],
+     correct:1, feedback:"Atropa belladonna y estramonio causan síndrome anticolinérgico: midriasis, taquicardia, sequedad, agitación, alucinaciones."},
+
+    {stem:"Sobre las catástrofes según el centro CRED (OMS), ¿cuál NO es criterio de inclusión en su base de datos como catástrofe?",
+     opts:["10 o más personas fallecidas en el mismo suceso registrado","100 o más personas afectadas por el suceso colectivo","Declaración formal del estado de emergencia por la autoridad","Daños materiales económicos por encima del millón de euros"],
+     correct:3, feedback:"Los criterios CRED son: ≥10 fallecidos, ≥100 afectados, declaración de emergencia o necesidad de ayuda internacional. El coste no es criterio."},
+
+    {stem:"Leonor, 22 años, requiere ingreso involuntario por brote psicótico. Le indican contención mecánica. Señala la INCORRECTA:",
+     opts:["La contención mecánica es una medida terapéutica indicada por un médico","Debe acompañarse siempre de contención farmacológica concomitante","Como mínimo se contienen 4 miembros (contención de 4 puntos clásica)","Puede sustituirse por contención solo abdominal si el paciente colabora"],
+     correct:3, feedback:"La contención mecánica NUNCA se hace solo con cinturón abdominal ni solo con 2 miembros; mínimo 4 puntos."},
+
+    {stem:"En la marca de Jellinek (electrocución), ¿cuál de las siguientes es FALSA?",
+     opts:["Reproduce la forma del objeto conductor causante de la lesión","Es un signo patognomónico del paso de corriente eléctrica","Puede observarse tanto en bajo como en alto voltaje eléctrico","Se localiza siempre alrededor de los orificios respiratorios"],
+     correct:3, feedback:"La marca de Jellinek aparece en el punto de contacto con el conductor, no necesariamente en orificios respiratorios."},
+
+    {stem:"En la valoración de la incapacidad temporal, ¿cuál de las siguientes afirmaciones es CORRECTA?",
+     opts:["En enfermedad común se cobra el 100% desde el primer día siempre","En enfermedad profesional el derecho nace desde el primer día","La IT por accidente laboral cobra el 50% durante toda su duración","El máximo de duración de una IT por accidente de trabajo es 180 días"],
+     correct:1, feedback:"En enfermedad profesional o accidente de trabajo, el derecho a la prestación nace desde el primer día. En enfermedad común, los primeros 3 días no se cobran."}
+  ],
+  /* MOCK 2 */
+  mock2: [
+    {stem:"En tu primer mes como médico forense de guardia, te avisan al levantamiento de un cadáver hallado en una bañera. Kevin, varón de 56 años, es encontrado por su pareja Leonor sumergido en la bañera con el secador conectado a la corriente flotando sobre el agua. ¿Cuál es el hallazgo cutáneo que orientaría con MAYOR especificidad al paso de corriente eléctrica?",
+     opts:["Cutis anserina por contractura de los músculos piloerectores","Marca eléctrica de Jellinek, considerada signo patognomónico","Manchas de Paltauf subpleurales más grandes y de color claro","Equimosis subungueales por la inmersión prolongada en agua"],
+     correct:1, feedback:"La marca de Jellinek (reproducción del objeto conductor) es el signo patognomónico del paso de corriente eléctrica."},
+
+    {stem:"Leonor, 22 años, acude a urgencias agitada y desorientada. Aporta consentimiento verbal pero rechaza la analítica de sangre. Sus padres exigen retenerla a la fuerza. ¿Cuál de las siguientes afirmaciones es la MÁS correcta?",
+     opts:["Si es mayor de edad y competente, puede negarse válidamente al estudio","Los padres pueden consentir en su lugar si firman un documento por escrito","La urgencia médica permite obviar el consentimiento en cualquier caso","Debe firmar siempre un alta voluntaria antes de cualquier intervención"],
+     correct:0, feedback:"Si es mayor de edad y competente, su negativa al tratamiento debe respetarse, salvo riesgo grave para terceros."},
+
+    {stem:"Kevin, médico de familia, atiende a Leonor (15 años) que pide un anticonceptivo de emergencia tras una relación no protegida. Según la doctrina del menor maduro y la Ley 41/2002:",
+     opts:["Puede recetar el anticonceptivo de emergencia tras valorar madurez personal","Debe obligatoriamente avisar a los padres antes de recetar cualquier opción","Por debajo de los 16 años nunca puede recetarse sin orden judicial firme","Solo si Leonor presenta un informe psicológico previo que avale madurez"],
+     correct:0, feedback:"El menor maduro (12-16 años) puede tomar decisiones sanitarias si el médico valora su madurez; el anticonceptivo de emergencia entra dentro de la atención que puede prestarse al menor maduro."},
+
+    {stem:"En la autopsia de un cadáver hallado ahorcado, ¿cuál de los siguientes hallazgos NO sería esperable en el examen interno?",
+     opts:["Signo de Amussat con desgarro intimal de la carótida interna","Signo de Martin como hemorragias en la vaina carotídea","Línea argéntica de Thoinot con piel resquebrajada plateada","Manchas de Paltauf subpleurales de tamaño grande y claras"],
+     correct:3, feedback:"Las manchas de Paltauf son típicas de la SUMERSIÓN, no de la ahorcadura. El resto son hallazgos clásicos de ahorcadura."},
+
+    {stem:"Leonor, 38 años, embarazada de 20 semanas, descubre por ecografía una cromosomopatía letal en el feto. Solicita IVE. Según la Ley 2/2010:",
+     opts:["Puede interrumpir libremente por estar dentro del plazo legal ordinario","Solo puede interrumpir hasta las 14 semanas, ya superadas en este caso","Puede interrumpir por riesgo de graves anomalías fetales hasta las 22 sem","Necesita autorización de comité ético hospitalario por sobrepasar las semanas"],
+     correct:2, feedback:"Entre las 14 y las 22 semanas se permite IVE por riesgo de graves anomalías fetales (art. 15)."},
+
+    {stem:"En una autopsia, el examen externo muestra un cadáver de coloración rojiza intensa, livideces rojo cereza y rigidez precoz. El examen interno revela edema pulmonar de color carmín y sangre fluida acarminada. La etiología MÁS probable es:",
+     opts:["Intoxicación por monóxido de carbono con edema de Lacassagne","Hipotermia profunda con úlceras gástricas de Wischnewsky","Intoxicación cianhídrica con olor a almendras amargas presente","Sumersión vital en agua salada con hemoconcentración tisular"],
+     correct:0, feedback:"Livideces rojo cereza + edema acarminado de Lacassagne son típicos de la intoxicación por CO."},
+
+    {stem:"Kevin, varón de 28 años, autopsia: orificio cutáneo único con ennegrecimiento amplio en forma estrellada, signo de Puppe-Werkgartner positivo y signo de la boca de mina de Hoffmann. La distancia del disparo MÁS probable es:",
+     opts:["A bocajarro, con la boca del arma apoyada sobre la piel directamente","A quemarropa con alcance del cono de llama sobre la piel","A corta distancia con tatuaje y collarete de enjugamiento solo","A larga distancia con cintilla de contusión sin tatuaje asociado"],
+     correct:0, feedback:"Boca de mina de Hoffmann + Puppe-Werkgartner = disparo a bocajarro (arma apoyada)."},
+
+    {stem:"Sobre el parte judicial de lesiones, ¿cuál de las siguientes afirmaciones es FALSA?",
+     opts:["Se dirige al juzgado de guardia para poner en conocimiento las lesiones","Es una obligación legal del médico ante lesiones de posible origen delictivo","Requiere denuncia previa de la víctima como condición indispensable","Debe incluir descripción detallada del estado lesional encontrado"],
+     correct:2, feedback:"El parte judicial NO requiere denuncia previa; es obligación legal del médico, independientemente de la voluntad de la víctima."},
+
+    {stem:"Kevin trabaja como soldador en una nave industrial y desarrolla con los años una neoplasia pulmonar atribuida al amianto. La calificación legal MÁS adecuada es:",
+     opts:["Enfermedad profesional del grupo de agentes carcinógenos (RD 1299/2006)","Accidente in mision por exposición ocasional al ir a la nave anexa","Accidente in itinere por entrar al trabajo cruzando una zona con polvo","Enfermedad común sin relación con su actividad laboral del soldador"],
+     correct:0, feedback:"El cáncer de pulmón por exposición al amianto es enfermedad profesional, incluida en el grupo 6 (agentes carcinógenos) del cuadro vigente."},
+
+    {stem:"En una víctima de violencia de género, ¿cuál de las siguientes características NO encaja con el patrón de violencia de género?",
+     opts:["Relación asimétrica con abuso de poder y conductas de control","Conductas violentas reiteradas en el tiempo sobre la víctima mujer","Indefensión aprendida y dependencia económica del agresor varón","Episódica, simétrica, reactiva en conflicto puntual y bidireccional"],
+     correct:3, feedback:"Las características d) corresponden a violencia ESPORÁDICA de pareja, no a violencia de género (que es asimétrica, sostenida y unidireccional)."},
+
+    {stem:"Sobre la imputabilidad penal en el código penal español, ¿cuál es FALSA?",
+     opts:["Para ser imputable hay que poder comprender la ilicitud del hecho","Para ser imputable hay que poder gobernarse según dicha comprensión","Si falta solo uno de los requisitos puede haber imputabilidad disminuida","Una psicopatía hace al sujeto inimputable de forma plena y absoluta"],
+     correct:3, feedback:"La psicopatía NO hace inimputable: el psicópata comprende la ilicitud y puede gobernarse. Suele aplicarse imputabilidad completa o, a lo sumo, ligeramente atenuada."},
+
+    {stem:"COMPLETA SENSE QUALIFICAR. Sobre las docimasias respiratorias, indica cuál(es) afirmación(es) es/son CORRECTA(s):",
+     opts:["La de Galeno consiste en la flotación del pulmón que ha respirado","La óptica de Bouchut muestra pulmón rosa claro si respiró, oscuro si no","La gastrointestinal de Breslau valora aire deglutido tras la respiración","La diafragmática de Casper estudia el descenso al sexto espacio costal"],
+     correct:[0,1,2,3], feedback:"Las cuatro docimasias respiratorias clásicas están bien descritas."},
+
+    {stem:"En una autopsia de cadáver hallado en piscina, los siguientes hallazgos sugieren MÁS firmemente sumersión vital:",
+     opts:["Cutis anserina marcada, hongo de espuma y enfisema acuoso difuso","Línea argéntica de Thoinot con resquebrajamiento brillante plateado","Signo de Martin y Amussat con desgarros intimales carotídeos","Marca eléctrica de Jellinek con figura de Lichtenberg arborescente"],
+     correct:0, feedback:"Cutis anserina + hongo de espuma + enfisema acuoso son hallazgos clásicos de sumersión vital."},
+
+    {stem:"Sobre el documento de instrucciones previas (\"testamento vital\"), señala la INCORRECTA:",
+     opts:["Lo otorga una persona mayor de edad y con capacidad de obrar","Se manifiesta anticipadamente y siempre por escrito autenticado","Puede designarse un representante interlocutor con el equipo asistencial","Puede ser otorgado por un menor maduro si tiene 14 años cumplidos"],
+     correct:3, feedback:"Las instrucciones previas requieren mayoría de edad. NO pueden otorgarse por menor maduro."},
+
+    {stem:"Leonor, 41 años, denuncia agresión sexual. Han pasado 14 horas desde el hecho. La muestra MÁS rentable para identificar al agresor mediante ADN es:",
+     opts:["Análisis de orina espontánea recogida tras la denuncia","Frotis vaginal con isopo y lavado vaginal con suero","Análisis del cabello de la víctima en zona occipital posterior","Análisis salivar superficial de la cara anterior del cuello"],
+     correct:1, feedback:"El frotis vaginal con isopo y el lavado vaginal son las muestras más rentables en las primeras 72 h para identificar al agresor."},
+
+    {stem:"En la herida por arma blanca de tipo INCISO-PUNZANTE (cuchillo, navaja, tijeras), señala la INCORRECTA:",
+     opts:["Tiene orificio de entrada y un trayecto típico de herida punzante","Presenta colas similares a las de la herida incisa pura habitual","Producida por arma con filo y punta combinados en su anatomía","Presenta puentes de unión patognomónicos en el fondo lesional"],
+     correct:3, feedback:"Los puentes de unión son patognomónicos de las heridas CONTUSAS. En las inciso-punzantes no aparecen."},
+
+    {stem:"Sobre el síndrome del cuidador quemado y el maltrato a ancianos, ¿cuál es la afirmación CORRECTA?",
+     opts:["La forma más frecuente de maltrato al anciano es la agresión física directa","La negligencia (omisión de cuidados) es la forma más frecuente de maltrato","Si el anciano no es competente, la denuncia debe presentarse siempre","El maltrato institucional es muy infrecuente comparado con el familiar"],
+     correct:1, feedback:"La negligencia (omisión de cuidados) es la forma más frecuente de maltrato al anciano. El maltrato institucional es además muy frecuente."},
+
+    {stem:"Kevin, 19 años, hallado muerto en su habitación. La autopsia revela edema pulmonar masivo y signos de inhibición de la acetilcolinesterasa. El tóxico MÁS probable es:",
+     opts:["Insecticida organofosforado con miosis, sialorrea y broncorrea","Rodenticida anticumarínico con hemorragias en mucosas múltiples","Paraquat herbicida con fibrosis pulmonar progresiva de evolución","Anticolinérgico vegetal con midriasis y delirium activo agudo"],
+     correct:0, feedback:"La inhibición de acetilcolinesterasa con edema pulmonar es clásica de los organofosforados."},
+
+    {stem:"COMPLETA SENSE QUALIFICAR. Sobre la responsabilidad profesional médica, ¿cuál(es) afirmación(es) es/son CORRECTA(s)?",
+     opts:["Los 4 elementos son: obligación, error, daño y relación de causalidad","La medicina es obligación de medios, no de resultados de salud absolutos","Si no hay documento de CI firmado, suele indemnizarse el 50% del daño","La responsabilidad penal es transferible al centro sanitario empleador"],
+     correct:[0,1,2], feedback:"La responsabilidad penal es SIEMPRE personal; no es transferible al centro."},
+
+    {stem:"Sobre la curva de Widmark de alcoholemia, señala la FALSA:",
+     opts:["Existe una fase de absorción, una meseta y una fase de eliminación posterior","Las determinaciones legales en tráfico se hacen en la fase de meseta","Un nuevo consumo durante la prueba puede invalidar la determinación","La fórmula clásica de Widmark solo es aplicable en cadáveres antiguos"],
+     correct:3, feedback:"La fórmula de Widmark se aplica tanto en vivos como en cadáveres."},
+
+    {stem:"Sobre los grados de incapacidad permanente, ¿cuál de las siguientes equivalencias es INCORRECTA?",
+     opts:["IP Parcial: disminución ≥33% en el rendimiento normal habitual","IP Total: inhabilita para todas las tareas fundamentales de su profesión","IP Absoluta: inhabilita por completo para cualquier profesión laboral","Gran Invalidez: cuando la base reguladora supera los 4.000 euros mensuales"],
+     correct:3, feedback:"La gran invalidez se reconoce cuando se necesita asistencia de otra persona para los actos esenciales de la vida, no por la cuantía de la BR."},
+
+    {stem:"En una autopsia de víctima de sofocación por oclusión externa de orificios respiratorios, ¿cuál es el hallazgo MÁS específico?",
+     opts:["Hemorragias petequiales en la piel de cara, párpados y conjuntivas","Mascarilla equimótica por congestión de cara, cuello y tronco superior","Surco completo en cuello con línea argéntica de Thoinot brillante","Cutis anserina por contractura piloerectora postmortal generalizada"],
+     correct:0, feedback:"En oclusión de orificios respiratorios destacan las hemorragias petequiales en cara, párpados y conjuntivas. La mascarilla equimótica es propia de compresión toraco-abdominal externa."},
+
+    {stem:"Kevin, varón, fallecimiento en custodia policial tras detención. ¿Qué tipo de autopsia procede SIEMPRE?",
+     opts:["Autopsia clínica con autorización previa del facultativo y la familia","Autopsia judicial obligatoria por tratarse de muerte en custodia oficial","Autopsia voluntaria solo si la familia lo solicita por escrito","No procede autopsia si la causa parece natural sin signos sospechosos"],
+     correct:1, feedback:"Las muertes en custodia son sospechosas de criminalidad: siempre se hace autopsia judicial."},
+
+    {stem:"Sobre el certificado médico de defunción, ¿cuál es la afirmación CORRECTA?",
+     opts:["Puede emitirse en muertes violentas si conocemos bien al fallecido","Lo emite cualquier médico que reconozca el cadáver, no solo el tratante","Solo lo puede emitir el médico forense del juzgado de guardia","Su emisión exige la práctica previa de autopsia clínica obligada"],
+     correct:1, feedback:"Lo emite el facultativo que asistió al difunto en su última enfermedad o cualquier otro que reconozca el cadáver, en muertes naturales."},
+
+    {stem:"Leonor, 16 años, embarazada de 13 semanas, decide interrumpir el embarazo. Sus padres se oponen frontalmente. ¿Cuál es la actuación CORRECTA?",
+     opts:["Resolver el conflicto por vía judicial urgente como una emergencia médica","Realizar la IVE con consentimiento de la propia Leonor, sin sus padres","Esperar a que cumpla la mayoría de edad para evitar conflictos legales","Solicitar evaluación psicológica obligatoria antes de cualquier decisión"],
+     correct:1, feedback:"Desde la reforma de 2023, a partir de los 16 años la mujer puede interrumpir voluntariamente el embarazo sin consentimiento de los padres."},
+
+    {stem:"En una víctima de precipitación, ¿cuál de los siguientes hallazgos NO es esperable?",
+     opts:["Piel relativamente intacta con destrozos internos masivos múltiples","Fractura craneal en \"saco de nueces\" por estallido del cráneo","Cuádruple fractura simultánea de Piga Pascual de las extremidades","Surco completo cervical con línea argéntica brillante plateada"],
+     correct:3, feedback:"La línea argéntica es de la ahorcadura, no de la precipitación."},
+
+    {stem:"Sobre la prescripción de los delitos contra menores (abusos, agresiones sexuales, maltrato habitual), el plazo empieza a contar:",
+     opts:["Desde el día siguiente a la comisión efectiva del hecho criminal","Desde la mayoría de edad civil de la víctima fijada en 18 años","A partir de los 35 años de edad cumplidos de la víctima del delito","Desde la fecha de presentación de la denuncia formal ante el fiscal"],
+     correct:2, feedback:"Para ciertos crímenes contra menores (abuso sexual, tentativa de homicidio, maltrato habitual, trata) la prescripción empieza a contar desde los 35 años de la víctima."},
+
+    {stem:"En la valoración del daño corporal por baremo 35/2015, las secuelas psico-físicas se valoran con un máximo de:",
+     opts:["50 puntos por ser muy subjetivas en general","100 puntos como puntuación máxima posible","75 puntos como la mitad superior del baremo","25 puntos según gravedad funcional residual"],
+     correct:1, feedback:"Las secuelas psico-físicas se valoran hasta 100 puntos; las estéticas hasta 50."},
+
+    {stem:"Kevin, 35 años, ingresa con cuadro de delirium tremens tras 3 días sin beber. Es alcohólico crónico. ¿Cuál es la base neuroquímica que explica MÁS adecuadamente la situación de violencia impulsiva asociada?",
+     opts:["Disminución de la serotonina y del GABA con desinhibición frontal","Aumento de la serotonina y del GABA con hiperactividad límbica","Disminución dopaminérgica frontal con apatía global del paciente","Aumento del cortisol con activación parasimpática generalizada"],
+     correct:0, feedback:"Disminución de serotonina y GABA + aumento de dopamina, noradrenalina, glutamato y Ach se asocian a violencia impulsiva."},
+
+    {stem:"COMPLETA SENSE QUALIFICAR. Sobre las quemaduras térmicas, indica cuál(es) afirmación(es) es/son CORRECTA(s):",
+     opts:["Las de 2º grado afectan epidermis y parte de dermis y respetan los anejos","Las de 3er grado afectan a todas las capas y producen necrosis con escaras","Las de 4º grado son carbonizantes con afectación de planos profundos","Las de 1er grado dejan siempre cicatriz residual y queloide visible"],
+     correct:[0,1,2], feedback:"Las quemaduras de 1er grado (eritema) NO dejan cicatriz."},
+
+    {stem:"Sobre el accidente \"in itinere\" en derecho laboral, ¿cuál es la afirmación CORRECTA?",
+     opts:["Es el ocurrido al ir o volver del lugar de trabajo por trayecto habitual","Es el accidente espontáneo en el desempeño de cargos sindicales electivos","Es el accidente por encargo del empresario en interés de la empresa","Es exclusivamente el ocurrido dentro del centro físico de trabajo"],
+     correct:0, feedback:"In itinere = al ir o volver del trabajo. La opción c) es \"in mision\"."},
+
+    {stem:"Sobre la eutanasia (Ley 3/2021), señala la INCORRECTA:",
+     opts:["Es necesario padecer enfermedad grave e incurable o sufrimiento grave crónico","Requiere dos solicitudes voluntarias por escrito separadas al menos 15 días","Solo pueden solicitarla ciudadanos con nacionalidad española obligatoriamente","La muerte resultante se considera natural a efectos legales y administrativos"],
+     correct:2, feedback:"Pueden solicitarla quienes tengan nacionalidad española, residencia legal en España o certificado de empadronamiento."},
+
+    {stem:"En la autopsia de un cadáver carbonizado, ¿cuál de los siguientes hallazgos NO ayuda a distinguir la quemadura vital de la postmortal?",
+     opts:["Niveles de carboxihemoglobina superiores al 10% en sangre","Hollín en la mucosa traqueal y bronquial inferior",  "Posiciones del cadáver en \"actitud de combate\" o boxeador","Carbonización homogénea sin restos de tejido cutáneo conservados"],
+     correct:3, feedback:"La carbonización homogénea sin restos cutáneos no distingue vital de postmortal. Los demás (COHb, hollín en vía aérea) sí orientan a quemadura vital."},
+
+    {stem:"Sobre la violencia infantil, ¿cuál de los siguientes hallazgos es MÁS sospechoso de maltrato deliberado?",
+     opts:["Contusiones múltiples en distintos estadios cromáticos evolutivos","Una única equimosis frontal compatible con caída de bicicleta","Eritema cutáneo simétrico generalizado tras un baño caliente","Erosión palmar única tras manipular un objeto rugoso de cocina"],
+     correct:0, feedback:"Las contusiones múltiples en distintos estadios cromáticos son altamente sospechosas de maltrato."},
+
+    {stem:"Kevin, varón, hallado muerto en domicilio. Livideces rojo oscuro, putrefacción avanzada con marbling de la red venosa, mancha verde extendida y desprendimiento epidérmico. El intervalo postmortal aproximado es:",
+     opts:["Menos de 24 h por presencia de livideces fijas y oscuras solamente","Entre 24-48 h por aparición de mancha verde recién instaurada","Días a semanas por fase enfisematosa con marbling y despegamiento","Más de 5 años por reducción esquelética casi completa del cadáver"],
+     correct:2, feedback:"Mancha verde extendida + marbling + desprendimiento epidérmico = fase enfisematosa (días-semanas)."},
+
+    {stem:"En la intoxicación por cianuro, además del olor a almendras amargas, el mecanismo tóxico principal es:",
+     opts:["Bloqueo de la hemoglobina formando metahemoglobina circulante","Bloqueo de la citocromo oxidasa con anoxia histotóxica global","Inhibición de la acetilcolinesterasa con crisis colinérgica aguda","Bloqueo de los canales de sodio del miocardio con arritmias letales"],
+     correct:1, feedback:"El cianuro bloquea la citocromo oxidasa mitocondrial provocando anoxia histotóxica."},
+
+    {stem:"Sobre la incapacidad temporal en una enfermedad común, ¿cuál es CORRECTA?",
+     opts:["Se cobra el 100% de la base reguladora desde el primer día siempre","Los primeros 3 días no se cobra ninguna prestación económica por IT","El derecho nace siempre desde el primer día de baja médica laboral","La duración máxima es de 18 meses prorrogable a 24 indefinidamente"],
+     correct:1, feedback:"En enfermedad común, los primeros 3 días no se cobra nada. La duración máxima de IT son 365 días + 180 de prórroga (ampliable a otros 180)."},
+
+    {stem:"COMPLETA SENSE QUALIFICAR. Sobre la sumisión química, indica cuál(es) afirmación(es) es/son CORRECTA(s):",
+     opts:["Es la administración de psicoactivos sin conocimiento con fines delictivos","Las drogas más implicadas son alcohol, psicofármacos y otras drogas de abuso","La muestra de orina permite detección hasta los 7 días posteriores","El cabello permite detectar la sustancia hasta 7 semanas después del hecho"],
+     correct:[0,1,2,3], feedback:"Todas las afirmaciones son correctas."},
+
+    {stem:"Sobre el secreto médico, ¿en cuál de las siguientes situaciones DEBE romperse OBLIGATORIAMENTE?",
+     opts:["Ante un paciente psicótico que amenaza con matar a un familiar concreto","Ante consultas íntimas sobre orientación sexual del paciente joven","Ante un paciente que confiesa adulterio durante una entrevista clínica","Ante familiares que preguntan por el diagnóstico psiquiátrico ambulatorio"],
+     correct:0, feedback:"El secreto profesional se rompe cuando hay riesgo CIERTO y GRAVE para terceros identificables."},
+
+    {stem:"Leonor, 25 años, entra en quirófano para una cesárea urgente. No firma el documento de consentimiento informado porque está en sufrimiento fetal agudo y necesita intervención inmediata. ¿Cuál es la actuación CORRECTA?",
+     opts:["Esperar a que firme antes de intervenir aunque empeore el feto","Intervenir por riesgo inmediato grave para integridad de la paciente","Solicitar autorización judicial urgente antes de cualquier intervención","Solicitar firma escrita de un familiar de primer grado para intervenir"],
+     correct:1, feedback:"Cuando existe riesgo inmediato grave para la integridad física o psíquica del paciente, se puede actuar sin consentimiento informado escrito."}
+  ],
+  /* MOCK 3 */
+  mock3: [
+    {stem:"En tu primera guardia como médico de familia rural, Kevin, varón de 71 años con EPOC y FA, fallece tranquilamente en su domicilio. Su esposa Leonor te llama para certificar la muerte. Le habías visto la semana pasada. ¿Cuál es la actuación CORRECTA?",
+     opts:["Negarte porque solo el forense puede certificar fallecimientos a domicilio","Emitir certificado médico de defunción tras reconocer al cadáver y comprobar identidad","Avisar al juzgado de guardia por tratarse de muerte fuera del hospital","Solicitar autopsia clínica obligatoria por la edad avanzada del paciente"],
+     correct:1, feedback:"En muertes naturales conocidas (paciente seguido por el médico), procede el CMD tras verificar identidad y signos de muerte."},
+
+    {stem:"Leonor, médico forense, recibe un cadáver hallado en lago. En la autopsia destacan hongo de espuma en boca, manchas de Paltauf subpleurales y enfisema acuoso. ¿Cuál es la causa de muerte MÁS probable?",
+     opts:["Ahorcadura típica con descenso suspendido del cuerpo total","Sumersión vital con entrada de agua a las vías respiratorias","Estrangulación a mano con estigmas ungueales secundarios","Intoxicación por CO con livideces rojo cereza características"],
+     correct:1, feedback:"Hongo de espuma + manchas de Paltauf + enfisema acuoso son hallazgos clásicos de sumersión vital."},
+
+    {stem:"En una autopsia de un cadáver hallado en su garaje con el motor encendido, ¿cuál de los siguientes hallazgos NO es esperable?",
+     opts:["Livideces rojo cereza extensas y persistentes en zonas declives","Edema pulmonar acarminado de Lacassagne en la apertura torácica","Niveles de carboxihemoglobina superiores al 30% en sangre periférica","Manchas verdes precoces en fosa ilíaca derecha en las primeras 6 horas"],
+     correct:3, feedback:"La mancha verde aparece a partir de las 24h. No es esperable a las pocas horas en intoxicación por CO."},
+
+    {stem:"Kevin, 38 años, sufre un accidente de tráfico mientras va al trabajo en su coche. ¿Cuál es la calificación legal?",
+     opts:["Accidente común sin relación con la actividad laboral del afectado","Accidente in itinere por desplazamiento al lugar habitual de trabajo","Accidente in mision por encargo del empresario para tareas concretas","Enfermedad profesional del grupo de agentes físicos por trauma laboral"],
+     correct:1, feedback:"Al ir al trabajo = accidente in itinere."},
+
+    {stem:"Sobre las equimosis, ¿cuál de las siguientes afirmaciones es FALSA?",
+     opts:["Son contusiones sin solución de continuidad de la piel suprayacente","Pueden adoptar la forma del objeto contundente (equimosis figurada)","La evolución cromática permite estimar el tiempo de la lesión producida","Las equimosis subungueales siguen siempre la evolución cromática típica"],
+     correct:3, feedback:"Las equimosis subungueales y subconjuntivales NO siguen la evolución cromática típica."},
+
+    {stem:"En el examen de un paciente con sospecha de violencia de género, ¿cuál de los siguientes patrones NO orienta al diagnóstico?",
+     opts:["Equimosis en distintos estadios cromáticos evolutivos en el mismo paciente","Lesiones en zonas habitualmente cubiertas por la ropa de la víctima","Una única laceración en el codo tras una caída casual referida explícita","Indefensión aprendida y pérdida de autoestima de la mujer afectada"],
+     correct:2, feedback:"Una lesión única explicada coherentemente NO sugiere violencia de género. Las otras (estadios distintos, zonas cubiertas, indefensión) sí."},
+
+    {stem:"Leonor, 17 años, embarazada de 10 semanas, solicita una IVE. Está bajo patria potestad. Sus padres firman a favor. ¿Cuál es la actuación CORRECTA?",
+     opts:["Realizar la IVE con consentimiento de Leonor, que tiene autonomía a los 16","Realizar la IVE solo si firman ambos padres pese a ser menor de edad","Resolver por vía judicial urgente por su minoría de edad legal absoluta","Esperar a que cumpla los 18 años para que pueda decidir libremente"],
+     correct:0, feedback:"A partir de los 16 años la mujer puede decidir libremente sobre la IVE. La firma de los padres es irrelevante."},
+
+    {stem:"Sobre la responsabilidad penal médica, ¿cuál es FALSA?",
+     opts:["Las consecuencias pueden incluir prisión, inhabilitación profesional e indemnización","Es siempre personal y NO transferible a otra persona física o jurídica","Surge cuando hay un acto u omisión tipificado como delito en el código penal","Puede ser pagada por el centro sanitario en virtud del contrato laboral firmado"],
+     correct:3, feedback:"La responsabilidad PENAL es personal e intransferible. La civil sí puede pagarla otra persona."},
+
+    {stem:"En una herida con bordes machacados, irregulares, con equimosis perilesional, sufusiones sanguíneas y puentes de unión en su profundidad, el agente causal MÁS probable es:",
+     opts:["Instrumento contundente (martillo, piedra) por mecanismo perpendicular","Instrumento incisivo con filo cortante puro como navaja afilada","Instrumento punzante con punta fina sin filo lateral significativo","Instrumento inciso-contundente como hacha o machete pesado"],
+     correct:0, feedback:"Bordes irregulares + puentes de unión patognomónicos = herida contusa por instrumento contundente."},
+
+    {stem:"COMPLETA SENSE QUALIFICAR. Sobre los signos forenses, indica cuál(es) afirmación(es) es/son CORRECTA(s):",
+     opts:["El signo de Benassi corresponde al ennegrecimiento óseo en el orificio de entrada","La línea argéntica de Thoinot es típica de la ahorcadura a nivel del surco","El edema pulmonar acarminado de Lacassagne aparece en la intoxicación por CO","Las úlceras de Wischnewsky se encuentran en la mucosa gástrica en la hipotermia"],
+     correct:[0,1,2,3], feedback:"Todos los signos están correctamente descritos."},
+
+    {stem:"Kevin, varón joven, fallece en discoteca por consumo de éxtasis combinado con alcohol y deshidratación. El cuadro clínico antes de morir incluyó hipertermia >41ºC, convulsiones y fracaso multiorgánico. La causa de muerte MÁS adecuada es:",
+     opts:["Golpe de calor combinado con toxicidad simpaticomimética por MDMA","Síndrome anticolinérgico por sobredosis de estimulantes anfetamínicos","Síndrome serotoninérgico exclusivamente, sin componente térmico claro","Intoxicación cianhídrica con anoxia histotóxica global rápidamente fatal"],
+     correct:0, feedback:"El cuadro descrito (hipertermia maligna >40,5ºC + simpaticomimético) corresponde a golpe de calor agravado por MDMA."},
+
+    {stem:"Sobre la asfixia posicional, los criterios diagnósticos de Bell incluyen TODOS EXCEPTO:",
+     opts:["El cadáver debe ser hallado en una situación que interfiera con la ventilación","Debe explicarse la incapacidad de la persona para liberarse de tal posición","Debe excluirse en la autopsia con certeza cualquier otra causa de muerte","Debe demostrarse necesariamente un cuadro depresivo previo del paciente"],
+     correct:3, feedback:"Los criterios de Bell NO exigen demostrar depresión previa. Sí exigen interferencia ventilatoria, incapacidad para liberarse y exclusión autopsia de otras causas."},
+
+    {stem:"Sobre el síndrome general de asfixia (SGA), ¿cuál de los siguientes signos NO es típico?",
+     opts:["Cianosis y aumento de la fluidez de la sangre en cavidades cardíacas","Petequias hemorrágicas puntiformes en serosas y conjuntivas oculares","Edema acarminado de Lacassagne en pulmones de coloración carmín intenso","Aumento del tamaño de las cavidades derechas del corazón cadavérico"],
+     correct:2, feedback:"El edema acarminado de Lacassagne es específico de la intoxicación por CO, no del SGA general."},
+
+    {stem:"Sobre la curva de Widmark de alcoholemia, indica la INCORRECTA:",
+     opts:["Tiene una fase de absorción, una meseta y una fase de eliminación posterior","La determinación legal se hace en dos tiempos para verificar la meseta","La fórmula de Widmark sirve para retrocálculo de la alcoholemia al tiempo","Solo es aplicable en autopsias de cadáveres y nunca en sujetos vivos"],
+     correct:3, feedback:"La curva y fórmula de Widmark son aplicables tanto en vivos como en cadáveres."},
+
+    {stem:"En una víctima de electrocución doméstica por contacto con la lavadora, el mecanismo de muerte MÁS frecuente es:",
+     opts:["Fibrilación ventricular cardíaca por paso de corriente alterna de bajo voltaje","Parada respiratoria central por afectación del bulbo raquídeo directa","Necrosis muscular masiva con rabdomiolisis e hiperpotasemia fatal","Coagulación térmica de proteínas por efecto Joule generalizado intenso"],
+     correct:0, feedback:"En electrocución de bajo voltaje (<1000 V) la muerte se produce por fibrilación ventricular."},
+
+    {stem:"Kevin, 38 años, refiere a su mujer Leonor planes suicidas detallados con un arma de fuego que tiene en casa. Tú, su médico de familia, ante la situación de riesgo:",
+     opts:["Debes respetar el secreto profesional porque es información sensible","Puedes romper el secreto profesional al haber riesgo grave para la propia vida","Solo puedes intervenir si Leonor presenta denuncia por amenazas previa","Esperarías a una próxima visita para reevaluar la ideación expresada"],
+     correct:1, feedback:"Ante riesgo cierto y grave para la propia vida (autolesión grave), puede romperse el secreto profesional para intervenir."},
+
+    {stem:"Sobre el daño moral por pérdida de calidad de vida en el baremo 35/2015, señala la INCORRECTA:",
+     opts:["Tiene mucho que ver con la funcionalidad residual del lesionado afectado","Forma parte del perjuicio personal y NO del perjuicio patrimonial directo","Solo se reconoce en casos excepcionales de dependencia muy grave funcional","Se cuantifica obligatoriamente sumando daño emergente y lucro cesante"],
+     correct:3, feedback:"El daño moral por pérdida de calidad de vida es PERSONAL. El daño emergente y lucro cesante son patrimoniales."},
+
+    {stem:"En la autopsia de un cadáver con fracturas costales posteriores bilaterales en distintos estadios, hemorragias retinianas y hematoma subdural en un lactante de 4 meses, el diagnóstico MÁS probable es:",
+     opts:["Síndrome del niño zarandeado (Shaken Baby Syndrome) por maltrato infantil","Síndrome de muerte súbita del lactante de causa primaria desconocida","Osteogénesis imperfecta con fragilidad ósea congénita primaria","Politraumatismo accidental por caída desde la cuna del propio bebé"],
+     correct:0, feedback:"Hemorragias retinianas + hematoma subdural + fracturas costales bilaterales = patrón clásico de Shaken Baby Syndrome."},
+
+    {stem:"Sobre la docimasia hidrostática de Galeno, ¿cuál es FALSA?",
+     opts:["Es la docimasia respiratoria más conocida y utilizada habitualmente","Consiste en sumergir los pulmones del recién nacido en agua y ver flotación","La flotación indica que el recién nacido ha respirado vida extrauterina","Solo es válida en cadáveres frescos sin signos de putrefacción gaseosa"],
+     correct:3, feedback:"La docimasia de Galeno se ve afectada por la putrefacción (que genera gases) pero NO se restringe solo a cadáveres frescos: simplemente se interpreta con precaución."},
+
+    {stem:"COMPLETA SENSE QUALIFICAR. Sobre las heridas por arma de fuego, indica cuál(es) afirmación(es) es/son CORRECTA(s):",
+     opts:["El anillo de Fish está formado por la cintilla y el collarete de enjugamiento","El signo de Puppe-Werkgartner reproduce el contorno de la boca de fuego","El signo de la boca de mina de Hoffmann indica disparo a bocajarro","El orificio de salida suele tener cintilla de contusión y tatuaje peri-lesional"],
+     correct:[0,1,2], feedback:"El orificio de salida NO tiene ni cintilla de contusión ni tatuaje (estos son del orificio de entrada)."},
+
+    {stem:"Leonor, 19 años, sufre amnesia parcial tras una noche de fiesta. Refiere haber bebido \"una sola copa\" y recordar fragmentos confusos. Han pasado 5 días. La prueba MÁS rentable para detectar sumisión química es:",
+     opts:["Analítica sanguínea estándar urgente con cribado de drogas","Análisis de orina por su mayor ventana de detección temporal","Análisis del cabello desde la zona occipital mechón proximal","Análisis del líquido sinovial de la rodilla por punción articular"],
+     correct:2, feedback:"A los 5 días la orina ya empieza a ser dudosa (7 días aproximadamente); el cabello permite hasta 7 semanas y es la prueba más rentable a partir de varios días."},
+
+    {stem:"En una autopsia de cadáver hallado tras nevada en zona montañosa, ¿cuál es el hallazgo gástrico más característico?",
+     opts:["Hemorragia subepicárdica difusa con petequias en la superficie del corazón","Úlceras gástricas agudas de Wischnewsky en mucosa con halos hemorrágicos","Manchas de Paltauf subpleurales más grandes y claras de lo habitual","Edema pulmonar acarminado de Lacassagne con tinte rojizo carminoso"],
+     correct:1, feedback:"Las úlceras de Wischnewsky en mucosa gástrica son hallazgo clásico de hipotermia."},
+
+    {stem:"Sobre la prestación de ayuda a morir (eutanasia, Ley 3/2021), ¿cuál de los siguientes NO es requisito para solicitarla?",
+     opts:["Ser mayor de edad y plenamente competente para la decisión","Padecer una enfermedad grave e incurable o un sufrimiento crónico imposibilitante","Disponer de información completa sobre el proceso médico y alternativas","Que la familia esté de acuerdo y firme un documento de consentimiento"],
+     correct:3, feedback:"La eutanasia es una decisión personal del paciente; NO requiere acuerdo familiar."},
+
+    {stem:"En un cadáver con livideces fijas, rigidez en periodo de resolución y temperatura central de 18ºC, el intervalo postmortal MÁS probable es:",
+     opts:["Menos de 6 h por presencia de rigidez intensa todavía conservada","Entre 12 y 24 h por equilibrio térmico parcial con el ambiente","Entre 36 y 48 h por estar la rigidez en periodo de resolución","Más de 5 días por descomposición avanzada del cadáver muerto"],
+     correct:2, feedback:"Resolución de rigidez >36 h + temperatura igualada al ambiente apuntan a 36-48 h."},
+
+    {stem:"Sobre la imputabilidad y los trastornos mentales en derecho penal, ¿cuál es la afirmación INCORRECTA?",
+     opts:["La psicosis activa con alucinaciones imperativas anula la imputabilidad penal","El trastorno de personalidad límite suele cursar con desregulación emocional","La psicopatía hace al sujeto siempre inimputable por carencia de empatía","El PTSD reactivo a un trigger puede modular parcialmente la imputabilidad"],
+     correct:2, feedback:"La psicopatía NO hace inimputable: el psicópata comprende la ilicitud y puede gobernarse, aunque carezca de empatía emocional."},
+
+    {stem:"Leonor está embarazada de 24 semanas y se diagnostica una cromosomopatía letal incompatible con la vida del feto. Según la ley:",
+     opts:["No puede interrumpir el embarazo por estar por encima de las 22 semanas","Puede interrumpir el embarazo por anomalía fetal incompatible con la vida","Solo puede interrumpir si hay grave riesgo demostrado para su propia vida","Necesita autorización judicial al sobrepasar el plazo legal ordinario de 14"],
+     correct:1, feedback:"Cuando se detectan anomalías fetales incompatibles con la vida, la IVE se permite sin límite específico de semanas (art. 15c)."},
+
+    {stem:"En la cronotanatodiagnosis, el descenso térmico cadavérico se rige por la fórmula clásica de:",
+     opts:["Widmark, basada en la masa corporal y la temperatura ambiente","Bouchat, con descenso de 0,8-1ºC/h las primeras horas iniciales","Galeno, basada en la flotación pulmonar al sumergir en agua","Lacassagne, según el color de las livideces sucesivas"],
+     correct:1, feedback:"La fórmula clásica de Bouchat: 0,8-1 ºC/h las primeras horas, después 0,3-0,5 ºC/h las siguientes 12 h."},
+
+    {stem:"Kevin, varón de 60 años, hallado en el sofá. Autopsia: cardiomegalia con cicatriz transmural en pared anterior del VI, estenosis crítica de DA y trombo agudo proximal. Cumple criterios de muerte súbita. El grado de certeza de Hirsch MÁS adecuado es:",
+     opts:["Grado 1: lesión estructural letal demostrada en autopsia","Grado 2: enfermedad potencialmente letal y avanzada explicable","Grado 3: enfermedad potencialmente letal pero insuficiente para morir","Grado 5: causa indeterminada por autopsia blanca completa"],
+     correct:0, feedback:"Trombosis coronaria aguda + IAM previo + estenosis crítica = lesión estructural letal demostrada (grado 1 de Hirsch)."},
+
+    {stem:"Sobre los baremos de daño corporal, ¿cuál es la afirmación CORRECTA?",
+     opts:["Son distintos en cada comunidad autónoma según convenio firmado","La indemnización es la misma independientemente de la edad del lesionado","La indemnización depende de la edad del lesionado entre otros factores","Solo se aplican en accidentes de tráfico y nunca en negligencia médica"],
+     correct:2, feedback:"La indemnización depende de la edad del lesionado (y otros factores). El baremo es común a toda España y se aplica también en RPM."},
+
+    {stem:"COMPLETA SENSE QUALIFICAR. Sobre el accidente de trabajo, indica cuál(es) afirmación(es) es/son CORRECTA(s):",
+     opts:["El accidente in itinere ocurre al ir o volver del lugar de trabajo habitual","El accidente in mision se produce por encargo del empresario en interés de la empresa","La fulguración en un trabajador del campo se considera accidente de trabajo","Las enfermedades previas que se agravan por una lesión laboral son AT"],
+     correct:[0,1,2,3], feedback:"Todas son correctas: la legislación reconoce in itinere, in mision, fulguraciones laborales y agravamientos de patología previa como AT."},
+
+    {stem:"En una víctima de estrangulación a lazo homicida, ¿cuál de los siguientes hallazgos es MÁS específico frente a la ahorcadura?",
+     opts:["Surco completo que rodea todo el cuello, horizontal y profundo en todo","Surco oblicuo que NO rodea completamente el cuello en zona del nudo","Congestión facial intensa con petequias en esclerótica y conjuntiva","Manchas de Paltauf abundantes subpleurales en parénquima pulmonar"],
+     correct:0, feedback:"En estrangulación a lazo el surco es HORIZONTAL y rodea TODO el cuello. En ahorcadura es OBLICUO y no rodea todo (queda libre la zona del nudo)."},
+
+    {stem:"Sobre la objeción de conciencia en la IVE y la eutanasia, señala la INCORRECTA:",
+     opts:["Debe manifestarse de forma anticipada y por escrito ante la administración","Puede ser absoluta o ligada a casos concretos del paciente solicitante","La objeción no puede frenar ni retrasar el procedimiento que solicita la paciente","La objeción se aplica a todo el personal del centro, incluido el administrativo"],
+     correct:3, feedback:"La objeción de conciencia se aplica solo a los profesionales DIRECTAMENTE implicados, no al personal administrativo o auxiliar."},
+
+    {stem:"En la valoración de un parte judicial de lesiones, ¿qué elemento es ESENCIAL?",
+     opts:["Descripción detallada de las lesiones observadas en la exploración clínica","Determinación pericial de la imputabilidad psiquiátrica del agresor identificado","Recomendación judicial sobre la pena que debería imponerse al agresor","Presupuesto económico estimado de la rehabilitación del lesionado afectado"],
+     correct:0, feedback:"El parte judicial debe contener una descripción DETALLADA de las lesiones; no incluye pericial de imputabilidad ni propuesta penal ni presupuesto."},
+
+    {stem:"Kevin, varón con antecedente de cardiopatía, fallece de IAM en su lugar de trabajo durante la jornada laboral habitual. Según la presunción legal de accidente de trabajo:",
+     opts:["NO es accidente de trabajo porque la cardiopatía es enfermedad común previa","SÍ es accidente de trabajo por presunción de la legislación laboral aplicable","Solo si demuestra estrés laboral pericialmente atribuible al evento cardíaco","Solo si la cardiopatía se diagnosticó después del IAM agudo presentado"],
+     correct:1, feedback:"Las lesiones (incluido IAM) sufridas durante el tiempo y lugar del trabajo se presumen, salvo prueba en contrario, accidente de trabajo."},
+
+    {stem:"En una autopsia con hallazgo de niveles de COHb del 12% en víctima de incendio doméstico, ¿qué conclusión es la MÁS adecuada?",
+     opts:["Muerte producida exclusivamente por la inhalación masiva de CO únicamente","Muerte producida antes del incendio (escaso CO inhalado postmortal)","Niveles compatibles con muerte por el incendio sin estar vivo durante el fuego","Niveles inhabituales que requieren análisis complementario del cianuro plasmático"],
+     correct:3, feedback:"COHb <30% en incendio sugiere muerte rápida o muerte previa. Hay que descartar intoxicación por cianuro (incendios con plásticos) que también puede ser letal con poca COHb."},
+
+    {stem:"Sobre los certificados médicos en general, ¿cuál es la afirmación INCORRECTA?",
+     opts:["El certificado de defunción solo se emite ante muertes de etiología natural","El certificado ordinario lo aporta el paciente y el médico solo lo firma","El facultativo que libre un certificado falso puede recibir pena de multa","El médico paga el coste del impreso del certificado oficial habitualmente"],
+     correct:3, feedback:"El paciente aporta el impreso del certificado ordinario; el médico NO paga el impreso."},
+
+    {stem:"En un paciente con esquizofrenia, agitado, sin capacidad de consentimiento, que se niega al ingreso, el médico de guardia indica contención mecánica. Señala la INCORRECTA:",
+     opts:["La contención mecánica debe ser indicada por un médico responsable","Debe acompañarse de contención farmacológica habitualmente concomitante","El ingreso debe pasar a involuntario para mantener la contención mecánica","Puede mantenerse indefinidamente mientras el paciente esté ingresado"],
+     correct:3, feedback:"La contención mecánica es TEMPORAL: debe retirarse en cuanto la situación clínica lo permita, con reevaluación frecuente."},
+
+    {stem:"Leonor, 13 años, acude con su madre solicitando información sobre métodos anticonceptivos. ¿Cuál es la actuación CORRECTA?",
+     opts:["Informar a Leonor escuchando su opinión, decidiendo el representante legal","Negar la información por ser menor de edad sin emancipación previa","Derivar a un comité ético para decidir sobre la pertinencia de la información","Informar exclusivamente a la madre sin participación de la menor adolescente"],
+     correct:0, feedback:"Entre los 12-16 años, el representante legal consiente DESPUÉS de oír la opinión del menor. La información se da a Leonor también."},
+
+    {stem:"COMPLETA SENSE QUALIFICAR. Sobre la psiquiatría legal, indica cuál(es) afirmación(es) es/son CORRECTA(s):",
+     opts:["El internamiento involuntario debe comunicarse al juez en plazo máximo de 24 h","El tribunal debe acudir como máximo en 72 h tras la notificación al juzgado","Un psicópata puede ser plenamente imputable a pesar de su trastorno mental","Los psiquiatras tratantes pueden actuar como peritos en juicios de sus pacientes"],
+     correct:[0,1,2], feedback:"El psiquiatra tratante NUNCA puede actuar como perito en el juicio de su paciente: acude como testigo-perito."},
+
+    {stem:"En el banco final, Kevin (varón, 50 años) presenta antecedente de psicopatía diagnosticada con piromanía, maltrato animal en la infancia y enuresis nocturna. Esta tríada se conoce como:",
+     opts:["Tríada de la psicopatía de Macdonald, predictora de conducta antisocial grave","Tríada de Bichat, definida por funciones vitales perdidas en la muerte","Tríada de Hirsch, sobre grados de certeza diagnóstica en autopsia clínica","Tríada de Beauchamp y Childress, principios bioéticos de la asistencia"],
+     correct:0, feedback:"La tríada de la psicopatía (piromanía + maltrato animal + enuresis nocturna) se conoce como tríada de Macdonald."}
+  ]
+};
+
+/* ====== RENDERING & LOGIC ====== */
+
+function isMulti(q){ return Array.isArray(q.correct); }
+
+function renderBlock(blockId, questions){
+  const root = document.querySelector(`#block-${blockId} .questions`);
+  root.innerHTML = '';
+  questions.forEach((q,i)=>{
+    const card = document.createElement('div');
+    card.className = 'qcard';
+    card.dataset.qidx = i;
+    const num = i+1;
+    const multi = isMulti(q);
+    const negMatch = q.stem.match(/\b(NO|FALSA|INCORRECTA|EXCEPTO)\b/g);
+    let stemHTML = q.stem;
+    if(negMatch){
+      negMatch.forEach(w=>{ stemHTML = stemHTML.replace(new RegExp('\\b'+w+'\\b'), `<span class="neg">${w}</span>`); });
+    }
+    const promptText = multi ? 'Trieu-ne una o més:' : 'Trieu-ne una:';
+    let html = `
+      <div class="qhead">
+        <span>Pregunta <strong>${num}</strong> · Puntuació 1,00 sobre 1,00${multi?' · <em>Completa Sense qualificar</em>':''}</span>
+        <span class="verdict" data-verdict></span>
+      </div>
+      <div class="qstem">${stemHTML}</div>
+      <div class="qprompt">${promptText}</div>
+      <ul class="opts">
+    `;
+    const letters = ['a','b','c','d'];
+    q.opts.forEach((opt,j)=>{
+      const inputType = multi ? 'checkbox' : 'radio';
+      const name = `q-${blockId}-${i}`;
+      html += `<li data-opt="${j}"><label><input type="${inputType}" name="${name}" value="${j}"><span class="lett">${letters[j]}.</span><span class="opt-text">${opt}</span></label></li>`;
+    });
+    html += `</ul><div class="feedback" data-feedback></div>`;
+    card.innerHTML = html;
+    root.appendChild(card);
+  });
+}
+
+function checkBlock(blockId){
+  const questions = BANKS[blockId];
+  const cards = document.querySelectorAll(`#block-${blockId} .qcard`);
+  let score = 0;
+  cards.forEach((card,i)=>{
+    const q = questions[i];
+    const multi = isMulti(q);
+    const inputs = card.querySelectorAll('input');
+    const selected = [];
+    inputs.forEach(inp=>{ if(inp.checked) selected.push(parseInt(inp.value,10)); });
+    let isCorrect = false;
+    if(multi){
+      // Multi-correct (Completa Sense qualificar): acceptar si l'usuari ha marcat almenys una opció correcta i CAP incorrecta
+      const correctSet = new Set(q.correct);
+      const hasAtLeastOne = selected.some(s=>correctSet.has(s));
+      const hasNoWrong = selected.every(s=>correctSet.has(s));
+      isCorrect = selected.length>0 && hasAtLeastOne && hasNoWrong;
+    } else {
+      isCorrect = selected.length===1 && selected[0]===q.correct;
+    }
+    card.classList.remove('correct','wrong');
+    card.classList.add(isCorrect?'correct':'wrong');
+    const verdict = card.querySelector('[data-verdict]');
+    verdict.textContent = isCorrect?'Correcte':'Incorrecte';
+    verdict.classList.toggle('correct', isCorrect);
+    verdict.classList.toggle('wrong', !isCorrect);
+    // Marcar opcions
+    const lis = card.querySelectorAll('.opts li');
+    lis.forEach((li,j)=>{
+      li.classList.remove('correct-opt','wrong-opt');
+      const isC = multi ? q.correct.includes(j) : (j===q.correct);
+      if(isC) li.classList.add('correct-opt');
+      if(selected.includes(j) && !isC) li.classList.add('wrong-opt');
+    });
+    // Feedback
+    const fb = card.querySelector('[data-feedback]');
+    const letters=['a','b','c','d'];
+    let correctTxt;
+    if(multi){
+      correctTxt = q.correct.map(c=>`${letters[c]}) ${q.opts[c]}`).join(' · ');
+    } else {
+      correctTxt = `${letters[q.correct]}) ${q.opts[q.correct]}`;
+    }
+    fb.innerHTML = `La resposta correcta és: <strong>${correctTxt}</strong>` + (q.feedback?`<br><span style="font-style:normal;color:#555">${q.feedback}</span>`:'');
+    fb.classList.add('show');
+    if(isCorrect) score++;
+  });
+  const block = document.getElementById(`block-${blockId}`);
+  block.querySelector('.score').textContent = score;
+  const total = questions.length;
+  const pct = Math.round(score*100/total);
+  const summary = block.querySelector('[data-summary]');
+  summary.classList.remove('good','mid','bad');
+  let cls = pct>=70?'good':(pct>=50?'mid':'bad');
+  summary.classList.add('show', cls);
+  summary.textContent = `${score}/${total} correctes (${pct}%)`;
+}
+
+function resetBlock(blockId){
+  const cards = document.querySelectorAll(`#block-${blockId} .qcard`);
+  cards.forEach(card=>{
+    card.classList.remove('correct','wrong');
+    card.querySelectorAll('input').forEach(i=>i.checked=false);
+    card.querySelector('[data-verdict]').textContent='';
+    card.querySelectorAll('.opts li').forEach(li=>li.classList.remove('correct-opt','wrong-opt'));
+    const fb = card.querySelector('[data-feedback]');
+    fb.classList.remove('show');
+    fb.innerHTML='';
+  });
+  const block = document.getElementById(`block-${blockId}`);
+  block.querySelector('.score').textContent='0';
+  block.querySelector('[data-summary]').classList.remove('show','good','mid','bad');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* Tabs */
+document.getElementById('tabs').addEventListener('click', e=>{
+  const btn = e.target.closest('button[data-tab]');
+  if(!btn) return;
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.block').forEach(b=>b.classList.remove('active'));
+  document.getElementById(`block-${btn.dataset.tab}`).classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+});
+
+/* Score bar actions */
+document.querySelectorAll('.scorebar').forEach(bar=>{
+  bar.addEventListener('click', e=>{
+    const btn = e.target.closest('button[data-action]');
+    if(!btn) return;
+    const block = bar.closest('.block');
+    const blockId = block.id.replace('block-','');
+    if(btn.dataset.action==='check') checkBlock(blockId);
+    if(btn.dataset.action==='reset') resetBlock(blockId);
+  });
+});
+
+/* Init */
+Object.keys(BANKS).forEach(k=>renderBlock(k, BANKS[k]));
+
+</script>
+
+</body>
+</html>
